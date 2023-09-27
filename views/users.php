@@ -18,7 +18,7 @@
 
   	<div class="row mb-2">
     	<div class="col-sm-6">
-      		<button type="button" class="btn btn-outline-success btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
+      		<button type="button" class="btn btn-outline-primary btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
       		<button type="button" class="btn btn-outline-danger btn-fw btn-sm" onclick="delete_entry()"><i class="mdi mdi-delete"></i> Delete </button>
     	</div>
   	</div>
@@ -205,7 +205,7 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.user_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
+	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.user_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
 	        }
 	    },
 	    {
