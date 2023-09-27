@@ -48,7 +48,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form  method="POST" id="form_submit" class="row g-3 needs-validation" novalidate>
+                  <form  method="POST" id="form_submit">
                       <div class="col-12">
                           <div class="form-group">
                             <div class="input-group">
@@ -111,7 +111,8 @@
                         </div>
 
                         <div class="col-12 mb-2">
-                          <button class="btn btn-primary w-100" type="submit" id="btn_submit">Login</button>
+
+                          <button type="submit" class="btn btn-outline-primary btn-sm w-100" id="btn_submit"><i class="mdi mdi-check-circle"></i> Save</button>
                         </div>
 
                         <div class="col-12">

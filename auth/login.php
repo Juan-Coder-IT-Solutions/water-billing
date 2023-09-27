@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="col-12 mb-2">
-                      <button class="btn btn-primary w-100" type="submit" id="btn_submit">Login</button>
+                      <button type="submit" class="btn btn-outline-primary btn-sm w-100" id="btn_submit"><i class="mdi mdi-login"></i> Login</button>
                     </div>
 
                     <div class="col-12">

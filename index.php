@@ -25,10 +25,16 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="assets/css/demo_1/style.css" />
     <!-- End layout styles -->
+    <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="assets/images/wbms_logo.png" />
     <link href="assets/vendors/sweet-alert/sweetalert2.min.css" rel="stylesheet">
   </head>
   <body>
+
+    <script src="assets/js/main2.js"></script>
+
+
+
     <div class="container-scroller">
       <?php require_once 'components/sidebar.php' ?>
 
@@ -58,7 +64,9 @@
     <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
     <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
     <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
+          <script src="assets/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/vendors/sweet-alert/sweetalert2.all.min.js"></script>
+    
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
