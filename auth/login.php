@@ -82,9 +82,9 @@
                       <button type="submit" class="btn btn-outline-primary btn-sm w-100" id="btn_submit"><i class="mdi mdi-login"></i> Login</button>
                     </div>
 
-                    <div class="col-12">
+                   <!--  <div class="col-12">
                       <p class="small mb-0 text-center">Don't have an account? <a href="register.php">Go to Registration Form</a></p>
-                    </div>
+                    </div> -->
                   </form>
                 </div>
               </div>

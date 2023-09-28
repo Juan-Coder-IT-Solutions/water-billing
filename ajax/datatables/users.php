@@ -9,11 +9,11 @@
 		$list = array();
 
 		$list['user_id'] 		= $row['user_id'];
+		$list['account_number'] = $row['account_number'];
 		$list['fullname'] 		= userFullName($row['user_id']);
 		$list['user_category'] 	= $row['user_category'];
 		$list['username'] 		= $row['username'];
 		$list['date_added'] 	= date("F j, Y h:i A",strtotime($row['date_added']));
-
 
 		array_push($response['data'], $list);
 	}

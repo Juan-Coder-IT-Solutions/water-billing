@@ -11,39 +11,73 @@
 	      	<div class="modal-body">
 	      		<!--HIDDEN PRIMARY ID -->
 	      		<input type="hidden" class="form-control form-control-sm" id="update_user_id" name="update_user_id">
-
-	      		<div class="form-group">
+          <div class="row">
+	      		<div class="col-sm-6">
+                <div class="form-group">
                   <label>User Category:</label>
-                  <select class="form-control form-control-sm" id="update_user_category"  name="update_user_category" required>
-                    <option value="U">Customer</option>
+                  <select class="form-control form-control-sm" id="update_user_category" name="update_user_category" required>
                     <option value="A">Admin</option>
+                    <option value="C">Customer</option>
+                    <option value="M">Meter Reader</option>
                   </select>
                 </div>
+              </div>
 
-	      		<div class="form-group">
+              <div class="col-sm-6">
+                <div class="form-group">
                     <label>First Name:</label>
                     <input type="text" class="form-control form-control-sm" id="update_user_fname" name="update_user_fname" placeholder="First Name" autocomplete="off" required>
                 </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-sm-6">
                 <div class="form-group">
                     <label>Middle Name:</label>
                     <input type="text" class="form-control form-control-sm" id="update_user_mname" name="update_user_mname" placeholder="Middle Name" autocomplete="off" required>
                 </div>
+              </div>
 
+              <div class="col-sm-6">
                 <div class="form-group">
                     <label>Last Name:</label>
                     <input type="text" class="form-control form-control-sm" id="update_user_lname" name="update_user_lname" placeholder="Last Name" autocomplete="off" required>
                 </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-sm-6">
+                 <div class="form-group">
+                    <label>Contact Number:</label>
+                    <input type="text" class="form-control form-control-sm" id="update_contact_number" name="update_contact_number" placeholder="Contact Number" autocomplete="off">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Address:</label>
+                  <textarea class="form-control form-control-sm" id="update_address" name="update_address" rows="4"  autocomplete="off" placeholder="Address"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
                 <div class="form-group">
                     <label>Username:</label>
                     <input type="text" class="form-control form-control-sm" id="update_username" name="update_username" placeholder="Username" autocomplete="off" required>
                 </div>
+              </div>
 
+              <div class="col-sm-6">
                 <div class="form-group">
-                	<label>Password</label>
-                	<input type="password" class="form-control form-control-sm" id="update_password" name="update_password" placeholder="Password" autocomplete="off">
-              	</div>
+                  <label>Password</label>
+                  <input type="password" class="form-control form-control-sm" id="update_password" name="update_password" placeholder="Password" autocomplete="off">
+                </div>
+              </div>
+            </div>
 	      	</div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary btn-fw btn-sm" data-dismiss="modal"><i class="mdi mdi-close-circle"></i> Close</button>

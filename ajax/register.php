@@ -11,7 +11,7 @@
 		if($fetch->num_rows > 0){ //check username
 			echo 2;
 		}else{
-			$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$fname', `user_mname`='$mname', `user_lname`='$lname', `username`='$username', password='$password', user_category='U'");
+			$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$fname', `user_mname`='$mname', `user_lname`='$lname', `username`='$username', password='$password', user_category='C'");
 
 		    if($query){
 		        echo 1;

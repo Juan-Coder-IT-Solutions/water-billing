@@ -2,7 +2,7 @@
 	define("DB_SERVER", "localhost");
 	define("DB_USER", "root");
 	define("DB_PASSWORD", "");
-	define("DB_DATABASE", "wb_db");
+	define("DB_DATABASE", "water_billing_db");
 	
 	
 	ini_set('date.timezone','UTC');
