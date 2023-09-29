@@ -29,13 +29,6 @@
       </a>
     </li>
 
-    <li class="nav-item <?= $page=="bills"?'active':''; ?>">
-      <a class="nav-link" href="?page=bills">
-        <i class="mdi mdi-coin menu-icon"></i>
-        <span class="menu-title">Bills</span>
-      </a>
-    </li>
-
     <li class="nav-item <?= $page=="feedbacks"?'active':''; ?>">
       <a class="nav-link" href="?page=feedbacks">
         <i class="mdi mdi-message-draw menu-icon"></i>
