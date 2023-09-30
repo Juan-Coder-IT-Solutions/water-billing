@@ -6,7 +6,7 @@
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
       <a class="navbar-brand brand-logo-mini" href="?page=dashboard"><img src="assets/images/logo-mini.svg" alt="logo" /></a>
     </div>
-    <ul class="navbar-nav">
+ <!--    <ul class="navbar-nav">
       <li class="nav-item dropdown">
         <a class="nav-link" id="messageDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
           <i class="mdi mdi-email-outline"></i>
@@ -93,7 +93,7 @@
           <h6 class="p-3 font-13 mb-0 text-primary text-center">View all notifications</h6>
         </div>
       </li>
-    </ul>
+    </ul> -->
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link" onclick="logout()">
