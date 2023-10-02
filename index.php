@@ -1,6 +1,7 @@
 <?php 
     include 'core/config.php';
     $user_id = $_SESSION['user_id'];
+    $session_user_category = user_info("user_category",$user_id);
     $page = (isset($_GET['page']) && $_GET['page'] !='') ? $_GET['page'] : '';
     userlogin($_SESSION['user_id']);
 ?>

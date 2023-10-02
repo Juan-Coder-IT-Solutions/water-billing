@@ -9,6 +9,8 @@
 		require $view.'announcements.php';
 	}else if($page == 'feedbacks'){
 		require $view.'feedbacks.php';
+	}else if($page == 'profile'){
+		require $view.'profile.php';
 	}else{
 		require $view.'404.php';
 	}

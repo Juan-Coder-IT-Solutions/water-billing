@@ -80,7 +80,7 @@
           
 	      	<div class="modal-footer">
         		<button type="button" class="btn btn-outline-secondary btn-fw btn-sm" data-dismiss="modal"><i class="mdi mdi-close-circle"></i> Close</button>
-        		<button type="submit" class="btn btn-outline-primary btn-fw btn-sm" id="form_btn_add_form"><i class="mdi mdi-check-circle"></i> Save</button>
+        		<button type="submit" class="btn btn-outline-primary btn-fw btn-sm" id="form_btn_update_basic_info"><i class="mdi mdi-check-circle"></i> Save</button>
 	      	</div>
 	    </form>
     </div>
