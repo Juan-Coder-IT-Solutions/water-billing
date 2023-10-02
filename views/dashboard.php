@@ -24,7 +24,7 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
   </div>
 
   <div class="row">
-    <div class="col-sm-4 stretch-card grid-margin">
+    <div class="col-sm-4 grid-margin">
       <div class="card">
           <div class="card-body">
             <div class="d-flex border-bottom mb-4 pb-2">
