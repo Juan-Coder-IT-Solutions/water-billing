@@ -97,7 +97,7 @@
     <ul class="navbar-nav navbar-nav-right">
       <li class="nav-item nav-logout d-none d-lg-block">
         <a class="nav-link" onclick="logout()">
-          <i class="mdi mdi-logout"></i>
+          <i class="mdi mdi-logout" data-toggle='tooltip' title="Logout?"></i>
         </a>
       </li>
     </ul>

@@ -7,6 +7,8 @@
 		require $view.'users.php';
 	}else if($page == 'announcements'){
 		require $view.'announcements.php';
+	}else if($page == 'bills'){
+		require $view.'bills.php';
 	}else if($page == 'feedbacks'){
 		require $view.'feedbacks.php';
 	}else if($page == 'profile'){

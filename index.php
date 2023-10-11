@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="assets/css/demo_1/style.css" />
     <!-- End layout styles -->
     <link href="assets/datatables/jquery.dataTables.min.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="assets/images/wbms_logo.png" />
+    <link rel="shortcut icon" href="assets/images/faucet_2_icon.ico" />
     <link href="assets/vendors/sweet-alert/sweetalert2.min.css" rel="stylesheet">
   </head>
   <body>

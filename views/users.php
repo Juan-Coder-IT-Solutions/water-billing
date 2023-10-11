@@ -35,7 +35,7 @@
 			            <th>Full Name</th>
 			            <th>User Category</th>
 			            <th>Username</th>
-			            <th></th>
+			            <!-- <th></th> -->
           			</tr>
         		</thead>
         		<tbody>
@@ -157,7 +157,7 @@ function delete_entry(){
                     Swal.fire({
                         icon: 'danger',
                         title: 'Opps!',
-                        text: 'Failed Query!'
+                        text: 'No selected data.'
                     });
                 }   
             });
@@ -235,11 +235,11 @@ function get_datatable(){
 	    {
 	        "data":"username"
 	    },
-	    {
-          "mRender":function(data, type, row){
-              return row.user_category=="C"?"<button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='View Bills' onclick='view_bills("+row.user_id+")'><i class='mdi mdi-coin'></i> Bills</button>":"";
-          }
-      },
+	    // {
+     //      "mRender":function(data, type, row){
+     //          return row.user_category=="C"?"<button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='View Bills' onclick='view_bills("+row.user_id+")'><i class='mdi mdi-coin'></i> Bills</button>":"";
+     //      }
+     //  },
 	    ]
 	});
 }

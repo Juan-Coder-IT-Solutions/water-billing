@@ -1,7 +1,7 @@
 <div class="content-wrapper pb-0">
   	<div class="page-header flex-wrap">
     	<div class="header-left">
-      		Manage your feedbacks here.
+      		Manage your bills here.
     	</div>
 
     	<div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
@@ -10,7 +10,7 @@
           			<p class="m-0 pr-3">Master Data</p>
         		</a>
         		<a class="pl-3 mr-4" href="#">
-          			<p class="m-0">Feedbacks</p>
+          			<p class="m-0">Bills</p>
         		</a>
       		</div>
     	</div>
@@ -30,10 +30,13 @@
       		<table id="datatable" class="table table-bordered">
         		<thead>
           			<tr>
-          				  <th style="width: 5px;"></th>
+          			<th style="width: 5px;"></th>
                     <th style="width: 5px;"></th>
+                    <th>Account Number</th>
                     <th>Full Name</th>
-                    <th>Content</th>
+                    <th>Previous Bill</th>
+                    <th>Present Bill</th>
+                    <th>Status</th>
                     <th>Date Added</th>
           			</tr>
         		</thead>
@@ -44,8 +47,8 @@
   	</div>
 </div>
 
-<?php require_once 'views/modals/add_feedback.php'; ?>
-<?php require_once 'views/modals/update_feedback.php'; ?>
+<?php require_once 'views/modals/add_bill.php'; ?>
+<?php require_once 'views/modals/update_bill.php'; ?> 
 
 
 <script type="text/javascript">
@@ -66,7 +69,7 @@ $("#form_submit_update_form").submit(function(e){
         if(result.isConfirmed){
             $.ajax({
             type:"POST",
-            url:"ajax/update_feedback.php",
+            url:"ajax/update_bill.php",
             data:$("#form_submit_update_form").serialize(),
             success:function(data){
                 if(data==1){
@@ -94,13 +97,16 @@ $("#form_submit_update_form").submit(function(e){
 function get_data(primary_id){
   $("#modalUpdate").modal("show");
 
-  $.post("ajax/get_feedback.php",
+  $.post("ajax/get_bill.php",
     {
         primary_id:primary_id
     },function(data){
         var get_data = JSON.parse(data);
-        $("#update_feedback_id").val(get_data[0].feedback_id);
-        $("#update_feedback_content").val(get_data[0].feedback_content);
+        $("#update_bill_id").val(get_data[0].bill_id);
+        $("#update_user_id").val(get_data[0].user_id);
+        $("#update_previous_bill").val(get_data[0].previous_bill);
+        $("#update_present_bill").val(get_data[0].present_bill);
+        $("#update_status").val(get_data[0].status);
   });
 }
 
@@ -118,7 +124,7 @@ function delete_entry(){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
-            $.post("ajax/delete_feedback.php",
+            $.post("ajax/delete_bill.php",
             {
                 id:checkedValues
             },function(data){
@@ -146,7 +152,7 @@ $("#form_submit_add_form").submit(function(e){
     $("#form_btn_add_form").prop('disabled', true);
     $.ajax({
         type:"POST",
-        url:"ajax/add_feedback.php",
+        url:"ajax/add_bill.php",
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
             if(data==1){
@@ -177,29 +183,40 @@ function get_datatable(){
 	    "processing": true,
 	    "ajax":{
 	        "type":"POST",
-	        "url":"ajax/datatables/feedbacks.php",
+	        "url":"ajax/datatables/bills.php",
 	        "dataSrc":"data", 
 	    },
 	    "columns":[
 	    {
 	        "mRender": function(data,type,row){
-	            return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.feedback_id+"'>";                
+	            return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.bill_id+"'>";                
 	        }
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return row.session_user_id==row.user_id?"<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.feedback_id+")'><i class='mdi mdi-lead-pencil'></i></button>":"";
+	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.bill_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
 	        }
+	    },
+	    {
+	       	"data":"account_number"
 	    },
 	    {
 	       	"data":"user"
 	    },
 	    {
-	        "data":"feedback_content"
+	        "data":"previous_bill"
 	    },
-      {
-          "data":"date_added"
-      }
+	   	{
+	        "data":"present_bill"
+	    },
+	    {
+	        "mRender":function(data, type, row){
+	            return row.status=="U"?"<label class='badge badge-warning'>Unpaid</label>":"<label class='badge badge-success'>Paid</label>";
+	        }
+	    },
+	    {
+	        "data":"date_added"
+	    }
 	    ]
 	});
 }

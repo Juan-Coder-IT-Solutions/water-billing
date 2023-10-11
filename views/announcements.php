@@ -133,7 +133,7 @@ function delete_entry(){
                     Swal.fire({
                         icon: 'danger',
                         title: 'Opps!',
-                        text: 'Failed Query!'
+                        text: 'No selected data.'
                     });
                 }   
             });
