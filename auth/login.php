@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+
+.background { 
+  background-image: url("../assets/images/wbloginbg.png");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -22,7 +32,7 @@
     <link rel="shortcut icon" href="../assets/images/faucet_2_icon.ico" />
     <link href="../assets/vendors/sweet-alert/sweetalert2.min.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="background">
     <div class="container-scroller">
       <div class="container">
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -31,14 +41,10 @@
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center">
-                <!-- <img src="../assets/img/CHMSU.png" alt="" style="width: 70%;"> -->
+               <!--  <img src="../assets/images/wbloginbg.png" alt="" style="width: 70%;"> -->
               </div>
 
-              <div class="d-flex justify-content-center py-4">
-                <a class="logo d-flex align-items-center w-auto">
-                  <span class="d-none d-lg-block" style="text-align: center;"></span>
-                </a>
-              </div>
+            
 
               <div class="card mb-3">
 

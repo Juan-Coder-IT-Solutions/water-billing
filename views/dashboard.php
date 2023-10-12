@@ -75,11 +75,11 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
           ?>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-info"><?= $announcement_row['announcement_title'] ?></h5>
+                <h5 class="card-title text-info" style="font-size: 14px;"><?= $announcement_row['announcement_title'] ?></h5>
                 <div class="media">
                   <i class="mdi mdi-pin icon-sm text-warning d-flex align-self-start mr-3"></i>
                   <div class="media-body">
-                    <p class="card-text"> <?= $announcement_row['announcement_content'] ?> </p>
+                    <p class="card-text" style="font-size:12px;"> <?= $announcement_row['announcement_content'] ?> </p>
                   </div>
                 </div>
               </div>
@@ -99,11 +99,11 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
           ?>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-info"><?= userFullName($feedback_row['user_id']) ?></h5>
+                <h5 class="card-title text-info" style="font-size: 14px;"><?= userFullName($feedback_row['user_id']) ?></h5>
                 <div class="media">
                   <i class="mdi mdi-account-circle icon-sm text-warning d-flex align-self-start mr-3"></i>
                   <div class="media-body">
-                    <p class="card-text"> <?= $feedback_row['feedback_content'] ?> </p>
+                    <p class="card-text" style="font-size:12px;"> <?= $feedback_row['feedback_content'] ?> </p>
                   </div>
                 </div>
               </div>
