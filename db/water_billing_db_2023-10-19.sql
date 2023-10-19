@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.5-10.1.25-MariaDB)
 # Database: water_billing_db
-# Generation Time: 2023-10-19 02:44:25 +0000
+# Generation Time: 2023-10-19 08:22:55 +0000
 # ************************************************************
 
 
@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `tbl_announcements`;
 
 CREATE TABLE `tbl_announcements` (
   `announcement_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `announcement_title` varchar(75) NOT NULL DEFAULT '',
   `announcement_content` text NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,11 +37,12 @@ CREATE TABLE `tbl_announcements` (
 LOCK TABLES `tbl_announcements` WRITE;
 /*!40000 ALTER TABLE `tbl_announcements` DISABLE KEYS */;
 
-INSERT INTO `tbl_announcements` (`announcement_id`, `announcement_title`, `announcement_content`, `date_added`)
+INSERT INTO `tbl_announcements` (`announcement_id`, `user_id`, `announcement_title`, `announcement_content`, `date_added`)
 VALUES
-	(1,'PANAGTAG BUGAS 2 KILO','BAWAL PULAHAN!!!!!!!!!','2023-09-28 15:20:54'),
-	(6,'VBCBCVB DFG','CVBCVBCVFGD DFGDFG DFG','2023-09-29 09:47:29'),
-	(8,'LJKLJKL','HJKHJK FGHRTYERGDFG','2023-09-29 09:47:44');
+	(1,1,'PANAGTAG BUGAS 2 KILO','BAWAL PULAHAN!!!!!!!!!','2023-09-28 15:20:54'),
+	(6,27,'VBCBCVB DFG','CVBCVBCVFGD DFGDFG DFG','2023-09-29 09:47:29'),
+	(8,1,'LJKLJKL','HJKHJK FGHRTYERGDFG','2023-09-29 09:47:44'),
+	(9,1,'qwe','qwe','2023-10-19 16:20:25');
 
 /*!40000 ALTER TABLE `tbl_announcements` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -54,11 +56,14 @@ DROP TABLE IF EXISTS `tbl_bills`;
 CREATE TABLE `tbl_bills` (
   `bill_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `previous_bill` decimal(9,2) NOT NULL,
-  `present_bill` decimal(9,2) NOT NULL,
   `previous_reading` int(11) NOT NULL,
-  `curren_reading` int(11) NOT NULL,
-  `status` varchar(1) NOT NULL DEFAULT '' COMMENT 'U = UNPAID, P = PAID',
+  `current_reading` int(11) NOT NULL,
+  `cubic_meter_rate` decimal(9,5) NOT NULL,
+  `penalty_amount` decimal(9,5) NOT NULL,
+  `billing_date` date NOT NULL,
+  `due_date` date NOT NULL,
+  `status` varchar(1) NOT NULL DEFAULT '' COMMENT 'S = SAVED, P = PAID',
+  `encoded_by` int(11) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`bill_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -66,11 +71,12 @@ CREATE TABLE `tbl_bills` (
 LOCK TABLES `tbl_bills` WRITE;
 /*!40000 ALTER TABLE `tbl_bills` DISABLE KEYS */;
 
-INSERT INTO `tbl_bills` (`bill_id`, `user_id`, `previous_bill`, `present_bill`, `previous_reading`, `curren_reading`, `status`, `date_added`)
+INSERT INTO `tbl_bills` (`bill_id`, `user_id`, `previous_reading`, `current_reading`, `cubic_meter_rate`, `penalty_amount`, `billing_date`, `due_date`, `status`, `encoded_by`, `date_added`)
 VALUES
-	(1,27,1001.00,20001.00,0,0,'U','2023-09-29 11:26:19'),
-	(3,27,12.00,13.00,0,0,'U','2023-10-11 11:56:09'),
-	(4,29,1.00,2.00,0,0,'P','2023-10-11 13:30:27');
+	(7,29,20,10,2.00000,3.00000,'2023-10-19','2023-10-18','S',1,'2023-10-19 14:52:44'),
+	(8,30,30,10,4.00000,5.00000,'2023-10-19','2023-10-19','S',1,'2023-10-19 14:54:16'),
+	(9,31,10,1,4.00000,5.00000,'2023-10-19','2023-10-19','S',1,'2023-10-19 14:54:33'),
+	(10,29,3,1,2.00000,3.00000,'2023-10-19','2023-10-19','S',1,'2023-10-19 16:20:09');
 
 /*!40000 ALTER TABLE `tbl_bills` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -103,6 +109,35 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table tbl_payments
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tbl_payments`;
+
+CREATE TABLE `tbl_payments` (
+  `payment_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `bill_id` int(11) NOT NULL,
+  `payment_amount` decimal(9,5) NOT NULL,
+  `encoded_by` int(11) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tbl_payments` WRITE;
+/*!40000 ALTER TABLE `tbl_payments` DISABLE KEYS */;
+
+INSERT INTO `tbl_payments` (`payment_id`, `bill_id`, `payment_amount`, `encoded_by`, `date_added`)
+VALUES
+	(2,0,2.00000,1,'2023-10-19 16:12:49'),
+	(3,0,2.00000,1,'2023-10-19 16:13:09'),
+	(4,0,0.00000,1,'2023-10-19 16:13:11'),
+	(5,7,1.00000,1,'2023-10-19 16:13:36'),
+	(6,7,2.00000,1,'2023-10-19 16:14:36');
+
+/*!40000 ALTER TABLE `tbl_payments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table tbl_system_charges
 # ------------------------------------------------------------
 
@@ -111,9 +146,8 @@ DROP TABLE IF EXISTS `tbl_system_charges`;
 CREATE TABLE `tbl_system_charges` (
   `system_charge_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `customer_type` varchar(11) NOT NULL DEFAULT '' COMMENT 'R = RESIDENTIAL, C= COMMECRCIAL',
-  `system_charge_name` varchar(75) NOT NULL DEFAULT '',
-  `amount` decimal(12,5) NOT NULL,
-  `kwh` decimal(12,5) NOT NULL,
+  `cubic_meter_rate` decimal(9,5) NOT NULL,
+  `late_penalty_amount` decimal(9,5) NOT NULL,
   `date_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`system_charge_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -121,10 +155,10 @@ CREATE TABLE `tbl_system_charges` (
 LOCK TABLES `tbl_system_charges` WRITE;
 /*!40000 ALTER TABLE `tbl_system_charges` DISABLE KEYS */;
 
-INSERT INTO `tbl_system_charges` (`system_charge_id`, `customer_type`, `system_charge_name`, `amount`, `kwh`, `date_added`)
+INSERT INTO `tbl_system_charges` (`system_charge_id`, `customer_type`, `cubic_meter_rate`, `late_penalty_amount`, `date_added`)
 VALUES
-	(1,'R','General Services',10.00000,1.00000,'2023-10-19 10:28:50'),
-	(3,'C','wews',2.00000,3.00000,'2023-10-19 10:37:33');
+	(6,'R',4.00000,5.00000,'2023-10-19 12:30:04'),
+	(7,'C',2.00000,3.00000,'2023-10-19 12:37:32');
 
 /*!40000 ALTER TABLE `tbl_system_charges` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -138,6 +172,7 @@ DROP TABLE IF EXISTS `tbl_users`;
 CREATE TABLE `tbl_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `account_number` varchar(10) NOT NULL DEFAULT '',
+  `meter_number` varchar(50) NOT NULL DEFAULT '',
   `user_fname` varchar(50) NOT NULL,
   `user_mname` varchar(50) NOT NULL,
   `user_lname` varchar(50) NOT NULL,
@@ -154,13 +189,14 @@ CREATE TABLE `tbl_users` (
 LOCK TABLES `tbl_users` WRITE;
 /*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
 
-INSERT INTO `tbl_users` (`user_id`, `account_number`, `user_fname`, `user_mname`, `user_lname`, `address`, `contact_number`, `username`, `password`, `user_category`, `customer_type`, `date_added`)
+INSERT INTO `tbl_users` (`user_id`, `account_number`, `meter_number`, `user_fname`, `user_mname`, `user_lname`, `address`, `contact_number`, `username`, `password`, `user_category`, `customer_type`, `date_added`)
 VALUES
-	(1,'000001','Juan','Mahusay','Dela Cruz','Purok Banago Barangay Bacolod','09123456789','admin','0cc175b9c0f1b6a831c399e269772661','A','','2023-09-28 15:27:35'),
-	(27,'000027','Pedo','Penduko','Aquino','test address','123456789','pedro','0cc175b9c0f1b6a831c399e269772661','C','R','2023-09-28 14:21:09'),
-	(28,'000028','Jun','Mangilog','Magsaysay','','','jun','0cc175b9c0f1b6a831c399e269772661','M','','2023-09-28 14:23:11'),
-	(29,'000029','Rino','Questo','Cartoons','EAST HOMES 69','09123654789','rino','827ccb0eea8a706c4c34a16891f84e7b','C','C','2023-10-11 11:45:30'),
-	(30,'000030','Q','Q','Q','Q','Q','Q','f09564c9ca56850d4cd6b3319e541aee','C','R','2023-10-19 09:41:58');
+	(1,'000001','','Juan','Mahusay','Dela Cruz','Purok Banago Barangay Bacolod','09123456789','admin','0cc175b9c0f1b6a831c399e269772661','A','','2023-09-28 15:27:35'),
+	(27,'000027','','Pedo','Penduko','Aquino','test address','123456789','pedro','0cc175b9c0f1b6a831c399e269772661','A','R','2023-09-28 14:21:09'),
+	(28,'000028','','Jun','Mangilog','Magsaysay','','','jun','0cc175b9c0f1b6a831c399e269772661','M','','2023-09-28 14:23:11'),
+	(29,'000029','wewewe','Rino','Questo','Cartoons','EAST HOMES 69','09123654789','rino','827ccb0eea8a706c4c34a16891f84e7b','C','C','2023-10-11 11:45:30'),
+	(30,'000030','2323wew','Q','Q','Q','Q','Q','Q','f09564c9ca56850d4cd6b3319e541aee','C','R','2023-10-19 09:41:58'),
+	(31,'000031','12345','t','t','t','t','t','t','e358efa489f58062f10dd7316b65649e','C','R','2023-10-19 11:29:31');
 
 /*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
 UNLOCK TABLES;
