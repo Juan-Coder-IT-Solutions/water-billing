@@ -1,16 +1,16 @@
 <div class="content-wrapper pb-0">
   	<div class="page-header flex-wrap">
     	<div class="header-left">
-      		Manage your users here.
+      		Manage your System Charges here.
     	</div>
 
     	<div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
       		<div class="d-flex align-items-center">
         		<a href="#">
-          			<p class="m-0 pr-3">Security</p>
+          			<p class="m-0 pr-3">Master Data</p>
         		</a>
         		<a class="pl-3 mr-4" href="#">
-          			<p class="m-0">Accounts Manager</p>
+          			<p class="m-0">System Charges</p>
         		</a>
       		</div>
     	</div>
@@ -25,17 +25,18 @@
 
   	<div class="row">
  		<div class="card-body">
+    	</p>
     	<div class="table-responsive">
       		<table id="datatable" class="table table-bordered">
         		<thead>
           			<tr>
-          				<th style="width: 5px;"></th>
-            			<th style="width: 5px;"></th>
-                  <th>Account Number</th>
-			            <th>Full Name</th>
-			            <th>User Category</th>
-			            <th>Username</th>
-			            <!-- <th></th> -->
+          			<th style="width: 5px;"></th>
+                    <th style="width: 5px;"></th>
+                    <th>Name</th>
+                    <th>Customer Type</th>
+                    <th>Amount</th>
+                    <th>kwh</th>
+                    <th>Date Added</th>
           			</tr>
         		</thead>
         		<tbody>
@@ -45,24 +46,14 @@
   	</div>
 </div>
 
-<?php require_once 'views/modals/add_user.php'; ?>
-<?php require_once 'views/modals/update_user.php'; ?>
-<?php require_once 'views/modals/view_bills.php'; ?>
+<?php require_once 'views/modals/add_system_charge.php'; ?>
+<?php require_once 'views/modals/update_system_charge.php'; ?>
+
 
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
 });
-
-function view_bills(primary_id){
-  $("#modalViewBills").modal("show");
-  $.post("ajax/view_bills.php",{
-    primary_id:primary_id
-  },function(data){
-    $("#modal_view_bills_body").html(data);
-    $('#view_bills_datatable').DataTable({});
-  });
-}
 
 $("#form_submit_update_form").submit(function(e){
     e.preventDefault();
@@ -77,7 +68,7 @@ $("#form_submit_update_form").submit(function(e){
         if(result.isConfirmed){
             $.ajax({
             type:"POST",
-            url:"ajax/update_user.php",
+            url:"ajax/update_system_charge.php",
             data:$("#form_submit_update_form").serialize(),
             success:function(data){
                 if(data==1){
@@ -88,12 +79,6 @@ $("#form_submit_update_form").submit(function(e){
                   });
                   get_datatable();
                   $("#modalUpdate").modal("hide");
-                }else if(data==2){
-                  Swal.fire({
-                      icon: 'warning',
-                      title: 'Opps!',
-                      text: 'Username Already Used!'
-                  });
                 }else{
                   Swal.fire({
                       icon: 'danger',
@@ -110,21 +95,18 @@ $("#form_submit_update_form").submit(function(e){
 
 function get_data(primary_id){
   $("#modalUpdate").modal("show");
-  $.post("ajax/get_user.php",
+
+  $.post("ajax/get_system_charge.php",
     {
-      primary_id:primary_id
+        primary_id:primary_id
     },function(data){
         var get_data = JSON.parse(data);
-        $("#update_user_id").val(get_data[0].user_id);
-        $("#update_user_category").val(get_data[0].user_category);
-        $("#update_user_fname").val(get_data[0].user_fname);
-        $("#update_user_mname").val(get_data[0].user_mname);
-        $("#update_user_lname").val(get_data[0].user_lname);
-        $("#update_username").val(get_data[0].username);
-        $("#update_password").val(get_data[0].password);
-        $("#update_address").val(get_data[0].address);
-        $("#update_contact_number").val(get_data[0].contact_number);
+
+        $("#update_system_charge_id").val(get_data[0].system_charge_id);
         $("#update_customer_type").val(get_data[0].customer_type);
+        $("#update_system_charge_name").val(get_data[0].system_charge_name);
+        $("#update_amount").val(get_data[0].amount);
+        $("#update_kwh").val(get_data[0].kwh);
   });
 }
 
@@ -142,7 +124,7 @@ function delete_entry(){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
-            $.post("ajax/delete_user.php",
+            $.post("ajax/delete_system_charge.php",
             {
                 id:checkedValues
             },function(data){
@@ -170,7 +152,7 @@ $("#form_submit_add_form").submit(function(e){
     $("#form_btn_add_form").prop('disabled', true);
     $.ajax({
         type:"POST",
-        url:"ajax/add_user.php",
+        url:"ajax/add_system_charge.php",
         data:$("#form_submit_add_form").serialize(),
         success:function(data){
             if(data==1){
@@ -179,15 +161,9 @@ $("#form_submit_add_form").submit(function(e){
                     title: 'All good!',
                     text: 'Data added successfully!'
                 });
-            	document.getElementById("form_submit_add_form").reset();
-            	get_datatable();
+              document.getElementById("form_submit_add_form").reset();
+              get_datatable();
               $("#modalAdd").modal("hide");
-            }else if(data==2){
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Opps!',
-                    text: 'Username Already Used!'
-                });
             }else{
                 Swal.fire({
                     icon: 'danger',
@@ -207,40 +183,37 @@ function get_datatable(){
 	    "processing": true,
 	    "ajax":{
 	        "type":"POST",
-	        "url":"ajax/datatables/users.php",
+	        "url":"ajax/datatables/system_charges.php",
 	        "dataSrc":"data", 
 	    },
 	    "columns":[
 	    {
 	        "mRender": function(data,type,row){
-	            return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.user_id+"'>";                
+	            return "<input type='checkbox' class='delete_check_box' name='check_user' value='"+row.system_charge_id+"'>";                
 	        }
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.user_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
+	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.system_charge_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
 	        }
 	    },
-      {
-          "data":"account_number"
-      },
 	    {
-	        "data":"fullname"
+	       	"data":"system_charge_name"
 	    },
 	    {
 	        "mRender":function(data,type,row){
-            var customer_type = row.customer_type=="C"?"Commercial":((row.customer_type=="R")?"Residential":"");
-	        	return row.user_category=="A"?"Admin":((row.user_category=="C")?"Customer <span class='text-primary'>("+customer_type+")</span>":"Meter Reader");
+	        	return row.customer_type=="C"?"Commercial":((row.customer_type=="R")?"Residential":"");
 	        }
 	    },
 	    {
-	        "data":"username"
+	        "data":"amount"
 	    },
-	    // {
-     //      "mRender":function(data, type, row){
-     //          return row.user_category=="C"?"<button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='View Bills' onclick='view_bills("+row.user_id+")'><i class='mdi mdi-coin'></i> Bills</button>":"";
-     //      }
-     //  },
+	    {
+	        "data":"kwh"
+	    },
+      {
+          "data":"date_added"
+      }
 	    ]
 	});
 }

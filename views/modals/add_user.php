@@ -9,14 +9,25 @@
       </div>
       	<form role="form" method="POST" id="form_submit_add_form">
 	      	<div class="modal-body">
-	      		<div class="row">
-              <div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-12">
                 <div class="form-group">
                   <label>User Category:</label>
-                  <select class="form-control form-control-sm" name="user_category" required>
+                  <select class="form-control form-control-sm" id="user_category" name="user_category" required onchange="get_customer_type()">
                     <option value="A">Admin</option>
                     <option value="C">Customer</option>
                     <option value="M">Meter Reader</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+	      		<div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Customer Type:</label>
+                  <select class="form-control form-control-sm" id="customer_type" name="customer_type">
+                    <option value="">Please Choose:</option>
                   </select>
                 </div>
               </div>
@@ -86,3 +97,16 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function get_customer_type(){
+    var user_category = $("#user_category").val();
+    var customer_type = $("#customer_type").val();
+
+    if(user_category=="C"){
+      $("#customer_type").html("<option value='C'>Commercial</option><option value='R'>Residential</option>");
+    }else{
+      $("#customer_type").html("<option value=''>Please Choose:</option>");
+    }
+  }
+</script>

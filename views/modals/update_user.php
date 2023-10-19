@@ -11,14 +11,28 @@
 	      	<div class="modal-body">
 	      		<!--HIDDEN PRIMARY ID -->
 	      		<input type="hidden" class="form-control form-control-sm" id="update_user_id" name="update_user_id">
+
           <div class="row">
-	      		<div class="col-sm-6">
+            <div class="col-sm-12">
                 <div class="form-group">
                   <label>User Category:</label>
-                  <select class="form-control form-control-sm" id="update_user_category" name="update_user_category" required>
+                  <select class="form-control form-control-sm" id="update_user_category" name="update_user_category" required onchange="get_update_customer_type()">
                     <option value="A">Admin</option>
                     <option value="C">Customer</option>
                     <option value="M">Meter Reader</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+          <div class="row">
+	      		<div class="col-sm-6">
+                <div class="form-group">
+                  <label>Customer Type:</label>
+                  <select class="form-control form-control-sm" id="update_customer_type" name="update_customer_type">
+                    <option value="">Please Choose:</option>
+                    <option value='C'>Commercial</option>
+                    <option value='R'>Residential</option>
                   </select>
                 </div>
               </div>

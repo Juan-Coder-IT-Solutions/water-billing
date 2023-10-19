@@ -12,6 +12,7 @@
 		$list['account_number'] = $row['account_number'];
 		$list['fullname'] 		= userFullName($row['user_id']);
 		$list['user_category'] 	= $row['user_category'];
+		$list['customer_type'] 	= $row['customer_type'];
 		$list['username'] 		= $row['username'];
 		$list['date_added'] 	= date("F j, Y h:i A",strtotime($row['date_added']));
 
