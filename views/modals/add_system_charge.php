@@ -23,13 +23,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Amount:</label>
-                    <input type="number" class="form-control form-control-sm" name="amount" placeholder="Amount" autocomplete="off">
+                    <label>Cubic Meter Rate:</label>
+                    <input type="number" class="form-control form-control-sm" name="cubic_meter_rate" placeholder="Cubic Meter Rate" autocomplete="off">
                 </div>
 
                 <div class="form-group">
-                    <label>Kwh:</label>
-                    <input type="number" class="form-control form-control-sm" name="kwh" placeholder="Kilo watt hour" autocomplete="off">
+                    <label>Late Penalty Amount:</label>
+                    <input type="number" class="form-control form-control-sm" name="late_penalty_amount" placeholder="Late Penalty Amount" autocomplete="off">
                 </div>
 	      	</div>
           

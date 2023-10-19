@@ -16,6 +16,7 @@
 		$list['contact_number'] = $row['contact_number'];
 		$list['address'] 		= $row['address'];
 		$list['customer_type'] 	= $row['customer_type'];
+		$list['meter_number'] 	= $row['meter_number'];
 		$list['date_added'] 	= $row['date_added'];
 		
 		//modified

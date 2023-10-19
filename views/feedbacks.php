@@ -18,7 +18,10 @@
 
   	<div class="row mb-2">
     	<div class="col-sm-6">
+
+          <?php  if($session_user_category=="C"){ ?>
       		<button type="button" class="btn btn-outline-primary btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
+          <?php } ?>
       		<button type="button" class="btn btn-outline-danger btn-fw btn-sm" onclick="delete_entry()"><i class="mdi mdi-delete"></i> Delete </button>
     	</div>
   	</div>

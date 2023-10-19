@@ -19,25 +19,33 @@
   	<div class="row mb-2">
     	<div class="col-sm-6">
       		<button type="button" class="btn btn-outline-primary btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
+
+          <button type="button" class="btn btn-outline-success btn-fw btn-sm mr-1" onclick="view_parameters()"><i class="mdi mdi-format-list-bulleted"></i> Bill Parameters </button>
+
       		<button type="button" class="btn btn-outline-danger btn-fw btn-sm" onclick="delete_entry()"><i class="mdi mdi-delete"></i> Delete </button>
     	</div>
   	</div>
 
-  	<div class="row">
+  	<div class="row" style="overflow: auto;">
  		<div class="card-body">
-    	</p>
+
     	<div class="table-responsive">
       		<table id="datatable" class="table table-bordered">
         		<thead>
           			<tr>
-          			<th style="width: 5px;"></th>
+          			   <th style="width: 5px;"></th>
                     <th style="width: 5px;"></th>
-                    <th>Account Number</th>
-                    <th>Full Name</th>
-                    <th>Previous Bill</th>
-                    <th>Present Bill</th>
+                    <th>Full <br> Name</th>
+                    <th>Previous <br> Reading</th>
+                    <th>Current <br> Reading</th>
+                    <th>Cubic <br> Meter <br> Rate</th>
+                    <th>Penalty <br> Amount</th>
+                    <th>Payment</th>
+                    <th>Balance</th>
+                    <th>Billing <br> Date</th>
+                    <th>Due <br> Date</th>
                     <th>Status</th>
-                    <th>Date Added</th>
+                    <th>Encoded By</th>
           			</tr>
         		</thead>
         		<tbody>
@@ -49,11 +57,72 @@
 
 <?php require_once 'views/modals/add_bill.php'; ?>
 <?php require_once 'views/modals/update_bill.php'; ?> 
-
+<?php require_once 'views/modals/parameters.php'; ?> 
+<?php require_once 'views/modals/payments.php'; ?> 
 
 <script type="text/javascript">
 $(document).ready(function() { 
 	get_datatable();
+});
+
+function payment(bill_id){
+  $("#modalPayments").modal("show");
+  $("#payment_bill_id").val(bill_id);
+  modal_payment_body();
+
+}
+
+function modal_payment_body(){
+  var payment_bill_id = $("#payment_bill_id").val();
+  $.post("ajax/modal_payment_body.php",{
+    payment_bill_id:payment_bill_id
+  },function(data){
+    $("#modal_payment_body").html(data);
+  });
+}
+
+function view_parameters(){
+  $("#modalParameters").modal("show");
+  $.post("ajax/parameters_modal_body.php",{
+  },function(data){
+    $("#parameter_body").html(data);
+  });
+}
+
+$("#form_submit_save_modal_parameter").submit(function(e){
+    e.preventDefault();
+    $("#form_btn_save_parameter_form").prop('disabled', true);
+    Swal.fire({
+        title: 'Update',
+        text: "Are you sure you want to proceed?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Proceed'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+            type:"POST",
+            url:"ajax/save_parameters.php",
+            data:$("#form_submit_save_modal_parameter").serialize(),
+            success:function(data){
+                if(data==1){
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'All good!',
+                      text: 'Data saved successfully!'
+                  });
+                }else{
+                  Swal.fire({
+                      icon: 'danger',
+                      title: 'Opps!',
+                      text: 'Failed Query!'
+                  });
+                }
+              }
+            });
+            $("#form_btn_save_parameter_form").prop('disabled', false);
+        }
+    });
 });
 
 $("#form_submit_update_form").submit(function(e){
@@ -104,9 +173,13 @@ function get_data(primary_id){
         var get_data = JSON.parse(data);
         $("#update_bill_id").val(get_data[0].bill_id);
         $("#update_user_id").val(get_data[0].user_id);
-        $("#update_previous_bill").val(get_data[0].previous_bill);
-        $("#update_present_bill").val(get_data[0].present_bill);
-        $("#update_status").val(get_data[0].status);
+        $("#update_previous_reading").val(get_data[0].previous_reading);
+        $("#update_current_reading").val(get_data[0].current_reading);
+        $("#update_cubic_meter_rate").val(get_data[0].cubic_meter_rate);
+        $("#update_penalty_amount").val(get_data[0].penalty_amount);
+        $("#update_billing_date").val(get_data[0].billing_date);
+        $("#update_due_date").val(get_data[0].due_date);
+
   });
 }
 
@@ -194,29 +267,44 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.bill_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
+	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.bill_id+")'><i class='mdi mdi-lead-pencil'></i></button> <button class='btn btn-outline-primary btn-sm' data-toggle='tooltip' title='Payment' onclick='payment("+row.bill_id+")'><i class='mdi mdi-cash-usd'></i></button>";
 	        }
-	    },
-	    {
-	       	"data":"account_number"
 	    },
 	    {
 	       	"data":"user"
 	    },
 	    {
-	        "data":"previous_bill"
+	        "data":"previous_reading"
 	    },
 	   	{
-	        "data":"present_bill"
+	        "data":"current_reading"
 	    },
+      {
+          "data":"cubic_meter_rate"
+      },
+      {
+          "data":"penalty_amount"
+      },
+      {
+          "data":"payment"
+      },
+      {
+          "data":"balance"
+      },
+      {
+          "data":"billing_date"
+      },
+      {
+          "data":"due_date"
+      },
 	    {
 	        "mRender":function(data, type, row){
-	            return row.status=="U"?"<label class='badge badge-warning'>Unpaid</label>":"<label class='badge badge-success'>Paid</label>";
+	            return row.status=="S"?"<label class='badge badge-warning'>Saved</label>":"<label class='badge badge-success'>Paid</label>";
 	        }
 	    },
-	    {
-	        "data":"date_added"
-	    }
+      {
+          "data":"encoded_by"
+      },
 	    ]
 	});
 }

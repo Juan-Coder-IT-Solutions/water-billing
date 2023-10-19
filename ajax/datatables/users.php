@@ -10,6 +10,7 @@
 
 		$list['user_id'] 		= $row['user_id'];
 		$list['account_number'] = $row['account_number'];
+		$list['meter_number'] 	= $row['meter_number'];
 		$list['fullname'] 		= userFullName($row['user_id']);
 		$list['user_category'] 	= $row['user_category'];
 		$list['customer_type'] 	= $row['customer_type'];

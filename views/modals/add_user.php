@@ -10,7 +10,7 @@
       	<form role="form" method="POST" id="form_submit_add_form">
 	      	<div class="modal-body">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-6">
                 <div class="form-group">
                   <label>User Category:</label>
                   <select class="form-control form-control-sm" id="user_category" name="user_category" required onchange="get_customer_type()">
@@ -20,15 +20,22 @@
                   </select>
                 </div>
               </div>
-            </div>
-
-	      		<div class="row">
               <div class="col-sm-6">
                 <div class="form-group">
                   <label>Customer Type:</label>
                   <select class="form-control form-control-sm" id="customer_type" name="customer_type">
                     <option value="">Please Choose:</option>
                   </select>
+                </div>
+              </div>
+
+            </div>
+
+	      		<div class="row">
+               <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Meter Number:</label>
+                    <input type="text" class="form-control form-control-sm" name="meter_number" placeholder="Meter Number" autocomplete="off">
                 </div>
               </div>
 

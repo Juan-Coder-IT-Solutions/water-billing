@@ -34,6 +34,7 @@
                     <th style="width: 5px;"></th>
                     <th>Title</th>
                     <th>Content</th>
+                    <th>Encoded By</th>
                     <th>Date Added</th>
           			</tr>
         		</thead>
@@ -188,7 +189,7 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.announcement_id+")'><i class='mdi mdi-lead-pencil'></i></button>";
+	            return row.user_id==row.session_user_id?"<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.announcement_id+")'><i class='mdi mdi-lead-pencil'></i></button>":"";
 	        }
 	    },
 	    {
@@ -197,6 +198,9 @@ function get_datatable(){
 	    {
 	        "data":"announcement_content"
 	    },
+      {
+          "data":"user"
+      },
       {
           "data":"date_added"
       }

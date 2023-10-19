@@ -8,6 +8,7 @@
     $contact_number = $mysqli -> real_escape_string($_POST['contact_number']);
     $address 		= $mysqli -> real_escape_string($_POST['address']);
     $customer_type 	= $mysqli -> real_escape_string($_POST['customer_type']);
+    $meter_number 	= $mysqli -> real_escape_string($_POST['meter_number']);
     $password 		= md5($_POST['password']);
 
 	$fetch 	= $mysqli->query("SELECT * FROM tbl_users WHERE username='$username'");
@@ -15,7 +16,7 @@
 		echo 2;
 	}else{
 		
-		$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$user_fname', `user_mname`='$user_mname', `user_lname`='$user_lname', `username`='$username', password='$password', `user_category`='$user_category',`contact_number`='$contact_number',address='$address', customer_type='$customer_type'");
+		$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$user_fname', `user_mname`='$user_mname', `user_lname`='$user_lname', `username`='$username', password='$password', `user_category`='$user_category',`contact_number`='$contact_number',address='$address', customer_type='$customer_type',meter_number='$meter_number'");
 		$last_id = $mysqli -> insert_id;
 
 		$account_number = sprintf('%06d', $last_id);

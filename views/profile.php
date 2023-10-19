@@ -16,12 +16,14 @@
     	</div>
   	</div>
 
+ 
+
   	<div class="row">
  		<div class="col-sm-8">
  			<div class="card">
 	          	<div class="card-body">
 	            <h4 class="card-title">User Information</h4>
-	            <p class="card-description text-success">Account Number: <?= user_info("account_number",$user_id) ?></p>
+	            <p class="card-description text-success">Account Number: <?= user_info("account_number",$user_id) ?> <br>  <?= $session_user_category=="C"?"Meter Number:".user_info("meter_number",$user_id):""; ?></p>
 		            <form role="form" method="POST" id="form_submit_update_basic_info">
 		            	<!--HIDDEN PRIMARY ID -->
 		            	<input type="hidden" name="basic_info_user_id" value="<?=$user_id?>">

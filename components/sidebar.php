@@ -24,6 +24,7 @@
       </a>
     </li>
 
+    <?php if($session_user_category=="C" || $session_user_category=="A"){ ?>
     <li class="pt-2 pb-1">
       <span class="nav-item-head">Master Data</span>
     </li>
@@ -36,19 +37,21 @@
     </li>
     <?php } ?>
 
+    
     <li class="nav-item <?= $page=="feedbacks"?'active':''; ?>">
       <a class="nav-link" href="?page=feedbacks">
         <i class="mdi mdi-message-draw menu-icon"></i>
         <span class="menu-title">Feedbacks</span>
       </a>
     </li>
+    <?php } ?>
 
-    <li class="nav-item <?= $page=="system_charges"?'active':''; ?>">
+<!--     <li class="nav-item <?= $page=="system_charges"?'active':''; ?>">
       <a class="nav-link" href="?page=system_charges">
         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         <span class="menu-title">System Charges</span>
       </a>
-    </li>
+    </li> -->
 
 
     <?php if($session_user_category=="A" || $session_user_category=="M"){ ?>

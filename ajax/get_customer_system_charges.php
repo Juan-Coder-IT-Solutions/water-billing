@@ -1,15 +1,15 @@
 <?php
 	include '../core/config.php';
 
-	$primary_id 	= $_POST['primary_id'];
-	$fetch = $mysqli->query("SELECT * FROM tbl_system_charges WHERE system_charge_id = '$primary_id'") or die(mysqli_error());
+	$user_id 	= $_POST['user_id'];
+	$customer_type = user_info("customer_type",$user_id);
 
+	$fetch = $mysqli->query("SELECT * FROM tbl_system_charges WHERE customer_type = '$customer_type'") or die(mysqli_error());
 	$response = array();
 	while ($row = $fetch->fetch_array()) {
 		$list = array();
 		$list['system_charge_id'] 		= $row['system_charge_id'];
 		$list['customer_type'] 			= $row['customer_type'];
-		$list['system_charge_name'] 	= $row['system_charge_name'];
 		$list['cubic_meter_rate'] 		= $row['cubic_meter_rate'];
 		$list['late_penalty_amount'] 	= $row['late_penalty_amount'];
 		$list['date_added'] 			= $row['date_added'];

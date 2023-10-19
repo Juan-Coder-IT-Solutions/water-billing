@@ -32,6 +32,7 @@
           				<th style="width: 5px;"></th>
             			<th style="width: 5px;"></th>
                   <th>Account Number</th>
+                  <th>Meter Number</th>
 			            <th>Full Name</th>
 			            <th>User Category</th>
 			            <th>Username</th>
@@ -125,6 +126,7 @@ function get_data(primary_id){
         $("#update_address").val(get_data[0].address);
         $("#update_contact_number").val(get_data[0].contact_number);
         $("#update_customer_type").val(get_data[0].customer_type);
+        $("#update_meter_number").val(get_data[0].meter_number);
   });
 }
 
@@ -223,6 +225,9 @@ function get_datatable(){
 	    },
       {
           "data":"account_number"
+      },
+      {
+          "data":"meter_number"
       },
 	    {
 	        "data":"fullname"

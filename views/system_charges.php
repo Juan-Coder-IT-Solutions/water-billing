@@ -34,8 +34,8 @@
                     <th style="width: 5px;"></th>
                     <th>Name</th>
                     <th>Customer Type</th>
-                    <th>Amount</th>
-                    <th>kwh</th>
+                    <th>Cubic Meter Rate</th>
+                    <th>Late Penalty Amount</th>
                     <th>Date Added</th>
           			</tr>
         		</thead>
@@ -105,8 +105,8 @@ function get_data(primary_id){
         $("#update_system_charge_id").val(get_data[0].system_charge_id);
         $("#update_customer_type").val(get_data[0].customer_type);
         $("#update_system_charge_name").val(get_data[0].system_charge_name);
-        $("#update_amount").val(get_data[0].amount);
-        $("#update_kwh").val(get_data[0].kwh);
+        $("#update_cubic_meter_rate").val(get_data[0].cubic_meter_rate);
+        $("#update_late_penalty_amount").val(get_data[0].late_penalty_amount);
   });
 }
 
@@ -206,10 +206,10 @@ function get_datatable(){
 	        }
 	    },
 	    {
-	        "data":"amount"
+	        "data":"cubic_meter_rate"
 	    },
 	    {
-	        "data":"kwh"
+	        "data":"late_penalty_amount"
 	    },
       {
           "data":"date_added"

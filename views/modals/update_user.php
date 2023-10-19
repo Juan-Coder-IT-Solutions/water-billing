@@ -13,7 +13,7 @@
 	      		<input type="hidden" class="form-control form-control-sm" id="update_user_id" name="update_user_id">
 
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <div class="form-group">
                   <label>User Category:</label>
                   <select class="form-control form-control-sm" id="update_user_category" name="update_user_category" required onchange="get_update_customer_type()">
@@ -23,10 +23,8 @@
                   </select>
                 </div>
               </div>
-            </div>
 
-          <div class="row">
-	      		<div class="col-sm-6">
+              <div class="col-sm-6">
                 <div class="form-group">
                   <label>Customer Type:</label>
                   <select class="form-control form-control-sm" id="update_customer_type" name="update_customer_type">
@@ -34,6 +32,15 @@
                     <option value='C'>Commercial</option>
                     <option value='R'>Residential</option>
                   </select>
+                </div>
+              </div>
+            </div>
+
+          <div class="row">
+	      		  <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Meter Number:</label>
+                    <input type="text" class="form-control form-control-sm" id="update_meter_number" name="update_meter_number" placeholder="Meter Number" autocomplete="off" required>
                 </div>
               </div>
 
