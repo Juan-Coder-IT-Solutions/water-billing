@@ -90,6 +90,13 @@ function save_payment(){
                   $("#payment_amount").val("");
                   modal_payment_body();
                   get_datatable();
+                }else if(data==2){
+                	Swal.fire({
+                      icon: 'danger',
+                      title: 'Opps!',
+                      text: 'Payment Amount exceeds the Remaining balance!'
+                  	});
+                  	$("#payment_amount").val("");
                 }else{
                   Swal.fire({
                       icon: 'danger',
