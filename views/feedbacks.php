@@ -35,8 +35,8 @@
           			<tr>
           				  <th style="width: 5px;"></th>
                     <th style="width: 5px;"></th>
-                    <th>Full Name</th>
                     <th>Content</th>
+                    <th>Encoded By</th>
                     <th>Date Added</th>
           			</tr>
         		</thead>
@@ -195,11 +195,11 @@ function get_datatable(){
 	        }
 	    },
 	    {
-	       	"data":"user"
-	    },
-	    {
 	        "data":"feedback_content"
 	    },
+      {
+          "data":"user"
+      },
       {
           "data":"date_added"
       }

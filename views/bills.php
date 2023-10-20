@@ -38,8 +38,6 @@
                     <th>Full <br> Name</th>
                     <th>Previous <br> Reading</th>
                     <th>Current <br> Reading</th>
-                    <th>Cubic <br> Meter <br> Rate</th>
-                    <th>Penalty <br> Amount</th>
                     <th>Payment</th>
                     <th>Balance</th>
                     <th>Billing <br> Date</th>
@@ -281,12 +279,6 @@ function get_datatable(){
 	   	{
 	        "data":"current_reading"
 	    },
-      {
-          "data":"cubic_meter_rate"
-      },
-      {
-          "data":"penalty_amount"
-      },
       {
           "data":"payment"
       },
