@@ -6,7 +6,6 @@
 
 	if($payment_amount>0){
 		$get_remaining_balance = get_remaining_balance($bill_id);
-
 		if($payment_amount>$get_remaining_balance){ //PAYMENT AMOUNT EXCEEDS THE REMAINING BALANCE
 			echo 2;
 		}else{

@@ -12,6 +12,9 @@
 		$list['customer_type'] 			= $row['customer_type'];
 		$list['cubic_meter_rate'] 		= $row['cubic_meter_rate'];
 		$list['late_penalty_amount'] 	= $row['late_penalty_amount'];
+		$list['maximum_cubic'] 			= $row['maximum_cubic'];
+		$list['minimum_rate'] 			= $row['minimum_rate'];
+
 		$list['date_added'] 			= $row['date_added'];
 
 

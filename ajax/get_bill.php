@@ -12,6 +12,10 @@
 		$list['previous_reading'] 	= $row['previous_reading'];
 		$list['current_reading'] 	= $row['current_reading'];
 		$list['cubic_meter_rate'] 	= $row['cubic_meter_rate'];
+
+		$list['maximum_cubic'] 	= $row['maximum_cubic'];
+		$list['minimum_rate'] 	= $row['minimum_rate'];
+		
 		$list['penalty_amount'] 	= $row['penalty_amount'];
 		$list['billing_date'] 		= $row['billing_date'];
 		$list['due_date'] 			= $row['due_date'];

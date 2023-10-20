@@ -180,6 +180,8 @@ function get_data(primary_id){
         $("#update_billing_date").val(get_data[0].billing_date);
         $("#update_due_date").val(get_data[0].due_date);
 
+        $("#update_maximum_cubic").val(get_data[0].maximum_cubic);
+        $("#update_minimum_rate").val(get_data[0].minimum_rate);
   });
 }
 

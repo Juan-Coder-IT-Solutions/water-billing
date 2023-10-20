@@ -52,7 +52,22 @@
                       <input type="number" class="form-control form-control-sm" id="update_penalty_amount" name="update_penalty_amount" placeholder="Cubic Meter Rate" autocomplete="off" required>
                   </div>
                 </div>
-                
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                   <div class="form-group">
+                      <label>Maximum Cubic:</label>
+                      <input type="number" class="form-control form-control-sm" id="update_maximum_cubic" name="update_maximum_cubic" placeholder="Maximum Cubic" autocomplete="off" required>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                   <div class="form-group">
+                      <label>Minumum Rate:</label>
+                      <input type="number" class="form-control form-control-sm" id="update_minimum_rate" name="update_minimum_rate" placeholder="Minumum Rate" autocomplete="off" required>
+                  </div>
+                </div>
               </div>
 
               <div class="row">
@@ -99,6 +114,9 @@
       var get_data = JSON.parse(data);
       $("#update_cubic_meter_rate").val(get_data[0].cubic_meter_rate);
       $("#update_penalty_amount").val(get_data[0].late_penalty_amount);
+
+      $("#update_maximum_cubic").val(get_data[0].maximum_cubic);
+      $("#update_minimum_rate").val(get_data[0].minimum_rate);
     });
   }
 

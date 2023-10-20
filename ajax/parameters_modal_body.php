@@ -23,6 +23,16 @@
                 <label>Late Penalty Amount:</label>
                 <input type="number" class="form-control form-control-sm" name="c_late_penalty_amount"  value="<?=$commercial_row['late_penalty_amount']?>" placeholder="Late Penalty Amount" autocomplete="off">
             </div>
+
+            <div class="form-group">
+                <label>Maximum cubic:</label>
+                <input type="number" class="form-control form-control-sm" name="c_maximum_cubic"  value="<?=$commercial_row['maximum_cubic']?>" placeholder="Maximum cubic" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Minimum Rate:</label>
+                <input type="number" class="form-control form-control-sm" name="c_minimum_rate"  value="<?=$commercial_row['minimum_rate']?>" placeholder="Minimum Rate" autocomplete="off">
+            </div>
        </div>
     </div>
 
@@ -38,6 +48,16 @@
             <div class="form-group">
                 <label>Late Penalty Amount:</label>
                 <input type="number" class="form-control form-control-sm" name="r_late_penalty_amount" value="<?=$residential_row['late_penalty_amount']?>" placeholder="Late Penalty Amount" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Maximum cubic:</label>
+                <input type="number" class="form-control form-control-sm" name="r_maximum_cubic"  value="<?=$residential_row['maximum_cubic']?>" placeholder="Maximum cubic" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Minimum Rate:</label>
+                <input type="number" class="form-control form-control-sm" name="r_minimum_rate"  value="<?=$residential_row['minimum_rate']?>" placeholder="Minimum Rate" autocomplete="off">
             </div>
        </div>
     </div>

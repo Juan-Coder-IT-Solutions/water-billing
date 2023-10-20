@@ -48,7 +48,22 @@
                       <input type="number" class="form-control form-control-sm" id="penalty_amount" name="penalty_amount" placeholder="Cubic Meter Rate" autocomplete="off" required>
                   </div>
                 </div>
-                
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                   <div class="form-group">
+                      <label>Maximum Cubic:</label>
+                      <input type="number" class="form-control form-control-sm" id="maximum_cubic" name="maximum_cubic" placeholder="Maximum Cubic" autocomplete="off" required>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                   <div class="form-group">
+                      <label>Minumum Rate:</label>
+                      <input type="number" class="form-control form-control-sm" id="minimum_rate" name="minimum_rate" placeholder="Minumum Rate" autocomplete="off" required>
+                  </div>
+                </div>
               </div>
 
               <div class="row">
@@ -95,6 +110,8 @@ function get_customer_system_charges(){
     var get_data = JSON.parse(data);
     $("#cubic_meter_rate").val(get_data[0].cubic_meter_rate);
     $("#penalty_amount").val(get_data[0].late_penalty_amount);
+    $("#maximum_cubic").val(get_data[0].maximum_cubic);
+    $("#minimum_rate").val(get_data[0].minimum_rate);
   });
 }
 </script>
