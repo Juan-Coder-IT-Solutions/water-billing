@@ -19,7 +19,7 @@ while ($row = $fetch->fetch_array()) {
     $dateYear = date('Y', strtotime($row['billing_date']));
 
     // Calculate the date for the last month
-    $lastMonth = date('Y-m', strtotime('-1 month', strtotime($date)));
+    $lastMonth = date('Y-m', strtotime('-1 month', strtotime($row['billing_date'])));
 
     // Extract the year and month
     $lastMonthYear = date('Y', strtotime($lastMonth));
