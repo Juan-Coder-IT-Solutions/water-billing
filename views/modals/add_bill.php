@@ -70,7 +70,7 @@
                 <div class="col-sm-6">
                    <div class="form-group">
                       <label>Previous Reading:</label>
-                      <input type="number" class="form-control form-control-sm" name="previous_reading" placeholder="Previous Reading" autocomplete="off" required>
+                      <input type="number" class="form-control form-control-sm" id="previous_reading" name="previous_reading" placeholder="Previous Reading" autocomplete="off" required>
                   </div>
                 </div>
 
@@ -112,6 +112,7 @@ function get_customer_system_charges(){
     $("#penalty_amount").val(get_data[0].late_penalty_amount);
     $("#maximum_cubic").val(get_data[0].maximum_cubic);
     $("#minimum_rate").val(get_data[0].minimum_rate);
+    $("#previous_reading").val(get_data[0].previous_reading);
   });
 }
 </script>

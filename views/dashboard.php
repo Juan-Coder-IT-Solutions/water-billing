@@ -34,8 +34,7 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
                 </div>
               </div>
               <div class="pl-4">
-                <h4 class="font-weight-bold text-warning mb-0"> <?= $count_announcement->num_rows; ?> </h4>
-                <h6 class="text-muted">Total Announcements</h6>
+                 <h4 class="mb-3"> <span class="font-weight-bold text-warning"><?= $count_announcement->num_rows; ?></span> <span class="text-muted">Total Announcements</span></h4>
               </div>
             </div>
             <div class="d-flex border-bottom mb-4 pb-2">
@@ -45,8 +44,7 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
                 </div>
               </div>
               <div class="pl-4">
-                <h4 class="font-weight-bold text-danger mb-0"> <?= $count_customers->num_rows; ?></h4>
-                <h6 class="text-muted">Total Customers</h6>
+                <h4 class="mb-3"> <span class="font-weight-bold text-danger"><?= $count_customers->num_rows; ?></span> <span class="text-muted">Total Customers</span></h4>
               </div>
             </div>
             <div class="d-flex border-bottom mb-4 pb-2">
@@ -56,8 +54,7 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
                 </div>
               </div>
               <div class="pl-4">
-                <h4 class="font-weight-bold text-success mb-0"> <?= $count_feedbacks->num_rows; ?> </h4>
-                <h6 class="text-muted">Total Feedbacks</h6>
+                <h4 class="mb-3"> <span class="font-weight-bold text-success"><?= $count_feedbacks->num_rows; ?></span> <span class="text-muted">Total Feedbacks</span></h4>
               </div>
             </div>
          
@@ -73,15 +70,14 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
             $fetch_announcement = $mysqli->query("SELECT * FROM tbl_announcements WHERE announcement_id >0 ORDER BY date_added DESC LIMIT 3") or die(mysqli_error());
              while ($announcement_row = $fetch_announcement->fetch_array()) {
           ?>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-info" style="font-size: 14px;"><?= $announcement_row['announcement_title'] ?></h5>
-                <div class="media">
-                  <i class="mdi mdi-pin icon-sm text-warning d-flex align-self-start mr-3"></i>
-                  <div class="media-body">
-                    <p class="card-text" style="font-size:12px;"> <?= $announcement_row['announcement_content'] ?> </p>
-                  </div>
-                </div>
+            <div class="card mb-1" style="max-width: 18rem;">
+              <div class="card-header" style="background:antiquewhite;"><i class="mdi mdi-account-circle icon-sm text-warning"></i> <?= userFullName($announcement_row['user_id']) ?>
+              <br>
+              <span style="font-size: 11px;color: #656565;"><?= date("Y-m-d (h:i A)",strtotime($announcement_row['date_added']))?></span>
+              </div>
+              <div class="card-body" style="background: #fff7ed;">
+                <h5 class="card-title"><i class="mdi mdi-pin icon-sm text-warning"></i> <?= $announcement_row['announcement_title'] ?></h5>
+                <p class="card-text"><?= $announcement_row['announcement_content'] ?></p>
               </div>
             </div>
           <?php } ?>
@@ -97,21 +93,18 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
             $fetch_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks WHERE feedback_id >0 ORDER BY date_added DESC LIMIT 3") or die(mysqli_error());
              while ($feedback_row = $fetch_feedbacks->fetch_array()) {
           ?>
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-info" style="font-size: 14px;"><?= userFullName($feedback_row['user_id']) ?></h5>
-                <div class="media">
-                  <i class="mdi mdi-account-circle icon-sm text-warning d-flex align-self-start mr-3"></i>
-                  <div class="media-body">
-                    <p class="card-text" style="font-size:12px;"> <?= $feedback_row['feedback_content'] ?> </p>
-                  </div>
-                </div>
+            <div class="card mb-1" style="max-width: 18rem;">
+              <div class="card-header" style="background:antiquewhite;"><i class="mdi mdi-account-circle icon-sm text-warning"></i> <?= userFullName($feedback_row['user_id']) ?>
+              <br>
+              <span style="font-size: 11px;color: #656565;"><?= date("Y-m-d (h:i A)",strtotime($feedback_row['date_added']))?></span>
+              </div>
+              <div class="card-body" style="background: #fff7ed;">
+                <p class="card-text"> <?= $feedback_row['feedback_content'] ?></p>
               </div>
             </div>
           <?php } ?>
         </div>
       </div>
     </div>
-
   </div>
 </div>
