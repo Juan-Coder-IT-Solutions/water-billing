@@ -37,9 +37,9 @@ while ($row = $fetch->fetch_array()) {
     $list['amount'] = number_format($total, 2); //$row['penalty_amount'];
     $list['billing_date'] = $row['billing_date'];
     $list['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1)) . " " . $lastMonthYear . " to " . date('M', mktime(0, 0, 0, $dateMonth, 1)) . " " . $dateYear;
-    $list['due_date'] = $row['due_date'];
+    $list['due_date'] = date("F j, Y h:i A",strtotime($row['due_date']));
     $list['status'] = $row['status'];
-    $list['date_added'] = $row['date_added'];
+    $list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
     array_push($response, $list);
 }
 
