@@ -1,9 +1,9 @@
 <?php
 	include '../core/config.php';
 
-	$user_id 	= $_POST['user_id'];
-	$customer_type = user_info("customer_type",$user_id);
-
+	$user_id 		= $_POST['user_id'];
+	$customer_type 	= user_info("customer_type",$user_id);
+	
 	$fetch = $mysqli->query("SELECT * FROM tbl_system_charges WHERE customer_type = '$customer_type'") or die(mysqli_error());
 	$response = array();
 	while ($row = $fetch->fetch_array()) {
@@ -16,6 +16,8 @@
 		$list['minimum_rate'] 			= $row['minimum_rate'];
 		$list['date_added'] 			= $row['date_added'];
 
+		$current_month_with_due_day 	= date("Y-m")."-".$row['due_day_of_the_month'];
+		$list['due_date'] 				= date("Y-m-d",strtotime("+1 month", strtotime($current_month_with_due_day)));
 		$list['previous_reading'] 		= get_previous_reading($user_id);
 
 		array_push($response, $list);

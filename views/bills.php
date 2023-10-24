@@ -89,7 +89,7 @@ function view_parameters(){
 
 $("#form_submit_save_modal_parameter").submit(function(e){
     e.preventDefault();
-    $("#form_btn_save_parameter_form").prop('disabled', true);
+    
     Swal.fire({
         title: 'Update',
         text: "Are you sure you want to proceed?",
@@ -98,6 +98,7 @@ $("#form_submit_save_modal_parameter").submit(function(e){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
+            $("#form_btn_save_parameter_form").prop('disabled', true);
             $.ajax({
             type:"POST",
             url:"ajax/save_parameters.php",

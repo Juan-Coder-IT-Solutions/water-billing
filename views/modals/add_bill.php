@@ -86,7 +86,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                       <label>Due Date:</label>
-                      <input type="date" class="form-control form-control-sm" name="due_date" placeholder="Due Date" autocomplete="off" required>
+                      <input type="date" class="form-control form-control-sm" id="due_date" name="due_date" placeholder="Due Date" autocomplete="off" required>
                     </div>
                 </div>
               </div>
@@ -112,7 +112,8 @@ function get_customer_system_charges(){
     $("#penalty_amount").val(get_data[0].late_penalty_amount);
     $("#maximum_cubic").val(get_data[0].maximum_cubic);
     $("#minimum_rate").val(get_data[0].minimum_rate);
-    $("#previous_reading").val(get_data[0].previous_reading);
+    $("#previous_reading").val(get_data[0].previous_reading*1);
+    $("#due_date").val(get_data[0].due_date);
   });
 }
 </script>
