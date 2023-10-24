@@ -53,4 +53,12 @@ function get_remaining_balance($bill_id){
 	return $result;
 }
 
+function get_previous_reading($user_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT current_reading FROM tbl_bills WHERE user_id='$user_id' ORDER BY billing_date DESC limit 1") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+
+	return $row[0];
+}
+
 ?>

@@ -234,18 +234,15 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data,type,row){
-            var customer_type = row.customer_type=="C"?"Commercial":((row.customer_type=="R")?"Residential":"");
-	        	return row.user_category=="A"?"Admin":((row.user_category=="C")?"Customer <span class='text-primary'>("+customer_type+")</span>":"Meter Reader");
+            var customer_type = row.customer_type=="C"?"<label class='badge badge-primary'>Commercial</label>":((row.customer_type=="R")?"<label class='badge badge-info'>Residential</label>":"");
+
+
+	        	return row.user_category=="A"?"Admin":((row.user_category=="C")?"Customer: "+customer_type+"":"Meter Reader");
 	        }
 	    },
 	    {
 	        "data":"username"
-	    },
-	    // {
-     //      "mRender":function(data, type, row){
-     //          return row.user_category=="C"?"<button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='View Bills' onclick='view_bills("+row.user_id+")'><i class='mdi mdi-coin'></i> Bills</button>":"";
-     //      }
-     //  },
+	    }
 	    ]
 	});
 }

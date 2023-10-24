@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Customer:</label>
-                    <select class="form-control form-control-sm" id="update_user_id" name="update_user_id" onchange="get_update_customer_system_charges()" required>
+                    <select class="form-control form-control-sm" id="update_user_id" name="update_user_id" required>
                       <?php 
                         echo "<option value=''>Please Choose:</option>";
                         $fetch_user_addmodal = $mysqli->query("SELECT * FROM tbl_users WHERE user_category='C'") or die(mysqli_error());
@@ -105,7 +105,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function get_update_customer_system_charges(){
     var user_id = $("#update_user_id").val();
     $.post("ajax/get_customer_system_charges.php",{
@@ -114,10 +114,10 @@
       var get_data = JSON.parse(data);
       $("#update_cubic_meter_rate").val(get_data[0].cubic_meter_rate);
       $("#update_penalty_amount").val(get_data[0].late_penalty_amount);
-
       $("#update_maximum_cubic").val(get_data[0].maximum_cubic);
       $("#update_minimum_rate").val(get_data[0].minimum_rate);
+      $("#update_previous_reading").val(get_data[0].previous_reading);
     });
   }
 
-</script>
+</script> -->
