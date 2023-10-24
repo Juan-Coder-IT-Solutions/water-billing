@@ -19,7 +19,7 @@ function getUser($user_id)
 	$fetchData = $mysqli_connect->query("SELECT user_fname,user_mname,user_lname FROM `tbl_users` WHERE user_id = '$user_id'");
 	$row = $fetchData->fetch_array();
 
-	return $row['user_fname'] . " " . $row['user_mname'] . $row['user_lname'];
+	return $row['user_fname'] . " " . $row['user_mname'] ." ". $row['user_lname'];
 }
 
 
