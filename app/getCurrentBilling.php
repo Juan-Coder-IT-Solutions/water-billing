@@ -43,7 +43,7 @@ $total_consume = $row['current_reading'] - $row['previous_reading'];
 $total_amount = $total_consume > $row['maximum_cubic'] ? $total_consume * $row['cubic_meter_rate'] : $row['minimum_rate'];
 $total_due = $total_amount + $param['late_penalty_amount'];
 
-$row['billing_period'] = $lastMonthMonth." ".$lastMonthYear." to " . $dateMonth . " " . $dateYear;
+$row['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1))." ".$lastMonthYear." to " . date('M', mktime(0, 0, 0, $dateMonth, 1)) . " " . $dateYear;
 $row['total_consume'] = $total_consume;
 $row['total_amount'] = $total_amount;
 $row['due_total'] =  $total_due;
