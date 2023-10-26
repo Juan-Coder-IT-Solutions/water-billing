@@ -17,7 +17,6 @@ $row = array();
 $fetch = $mysqli_connect->query("SELECT * FROM tbl_bills where user_id='$user_id' ORDER BY bill_id DESC") or die(mysql_error());
 $row = $fetch->fetch_array();
 
-
 $date = getCurrentDate();
 $dateMonth = date('m', strtotime($date));
 $dateYear = date('Y', strtotime($date));
@@ -35,6 +34,7 @@ $row['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1)) . " " . 
 $row['cubic_meter_rate'] = $param['cubic_meter_rate'];
 $row['maximum_cubic'] = $param['maximum_cubic'];
 $row['minimum_rate'] = $param['minimum_rate'];
+$row['penalty_amount'] = $param['late_penalty_amount'];
 
 
 echo json_encode($row);
