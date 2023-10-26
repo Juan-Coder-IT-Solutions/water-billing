@@ -45,15 +45,25 @@ function getParam($type)
 	return $row;
 }
 
-function dueDAte($billing_date)
-{
-	$startDate = new DateTime($billing_date);
-	$startDate->modify('+1 month');
-	$startDate->setDate($startDate->format('Y'), $startDate->format('m'), 1);
-	$dueDate = clone $startDate;
-	$dueDate->modify('first day of this month +7 days');
+// function dueDAte($billing_date)
+// {
+// 	$startDate = new DateTime($billing_date);
+// 	$startDate->modify('+1 month');
+// 	$startDate->setDate($startDate->format('Y'), $startDate->format('m'), 1);
+// 	$dueDate = clone $startDate;
+// 	$dueDate->modify('first day of this month +7 days');
 
-	return $dueDate->format('Y-m-d');
+// 	return $dueDate->format('Y-m-d');
+// }
+
+function dueDate($billing_date, $type)
+{
+	$param = getParam($type);
+    $startDate = new DateTime($billing_date);
+    $startDate->modify('+2 months'); 
+    $startDate->setDate($startDate->format('Y'), $startDate->format('m'), $param['due_day_of_the_month']); 
+    
+    return $startDate->format('Y-m-d');
 }
 
 function monthlyBilling($user_id)

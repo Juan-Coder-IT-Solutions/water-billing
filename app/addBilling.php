@@ -25,7 +25,7 @@ if (isset($data->account_id) && !empty($data->account_id)) {
     $fetch_rows = $mysqli_connect->query("SELECT count(user_id) FROM tbl_bills WHERE user_id='$user_id' AND MONTH(billing_date) = $dateMonth AND YEAR(billing_date) = $dateYear") or die(mysqli_error());
     $count_rows = $fetch_rows->fetch_array();
 
-    $due_date = dueDAte($date);
+    $due_date = dueDAte($date, getCustomerType($user_id));
 
     if ($count_rows[0] > 0) {
         echo -1;
