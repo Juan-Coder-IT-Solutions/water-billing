@@ -40,6 +40,7 @@ while ($row = $fetch->fetch_array()) {
     $list['due_date'] = date("F j, Y h:i A",strtotime($row['due_date']));
     $list['status'] = $row['status'];
     $list['date_added'] = date("F j, Y h:i A",strtotime($row['date_added']));
+    $list['encoded'] =  getUser($row['encoded_by']);
     array_push($response, $list);
 }
 
