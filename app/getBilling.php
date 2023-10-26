@@ -40,6 +40,7 @@ $row['cubic_meter_rate'] = $param['cubic_meter_rate'];
 $row['maximum_cubic'] = $param['maximum_cubic'];
 $row['minimum_rate'] = $param['minimum_rate'];
 $row['penalty_amount'] = $param['late_penalty_amount'];
+$row['amount_due'] = $param['minimum_rate']+$param['late_penalty_amount'];
 
 
 echo json_encode($row);
