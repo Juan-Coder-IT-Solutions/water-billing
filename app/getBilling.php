@@ -41,4 +41,6 @@ if($fetch->num_rows > 0){
 	$row['current_reading'] = 0;
 }
 
+echo json_encode($row);
+
 // }
