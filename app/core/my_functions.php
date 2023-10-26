@@ -60,7 +60,7 @@ function dueDate($billing_date, $type)
 {
 	$param = getParam($type);
     $startDate = new DateTime($billing_date);
-    $startDate->modify('+2 months'); 
+    $startDate->modify('+1 months'); 
     $startDate->setDate($startDate->format('Y'), $startDate->format('m'), $param['due_day_of_the_month']); 
     
     return $startDate->format('Y-m-d');
