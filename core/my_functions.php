@@ -26,7 +26,7 @@ function get_billing_total_balance($bill_id){
 	$row = $fetch->fetch_array();
 	
 	//IF CURRENT DATE EXCEEDS THE DUE DATE ADD PENALTY AMOUNT
-	$penalty = $row['due_date']<date('Y-m-d')?$row['penalty_amount']:0;
+	//$penalty = $row['due_date']<date('Y-m-d')?$row['penalty_amount']:0;
 
 	$consumption = ($row['current_reading']-$row['previous_reading']);
 
@@ -34,7 +34,7 @@ function get_billing_total_balance($bill_id){
 	$cubic_rate = $consumption > $row['maximum_cubic'] ? $row['cubic_meter_rate']*$consumption : $row['minimum_rate'];
 
 	//BALANCE FORMULA
-	$balance = $cubic_rate + $penalty;
+	$balance = $cubic_rate;
 
 	return $balance;
 }
@@ -59,6 +59,33 @@ function get_previous_reading($user_id){
 	$row = $fetch->fetch_array();
 
 	return $row[0];
+}
+
+function get_billing_count_for_the_month($user_id,$billing_date,$bill_id = 0){
+	global $mysqli;
+	$billing_date_ = date("Y-m",strtotime($billing_date));
+	$bill_id_ = $bill_id>0?"AND bill_id!='$bill_id'":"";
+	$fetch = $mysqli->query("SELECT * FROM tbl_bills WHERE user_id='$user_id' AND DATE_FORMAT(billing_date,'%Y-%m')='$billing_date_' $bill_id_") or die(mysqli_error());
+
+	return $fetch->num_rows;
+}
+
+function validateDate($date, $format = 'Y-m-d')
+{
+    $d = DateTime::createFromFormat($format, $date);
+    $result = $d && $d->format($format) == $date;
+    return $result;
+}
+
+function get_due_date($billing_date,$due_day_of_the_month){
+	$billing_month 					= date("Y-m",strtotime($billing_date));
+	$due_date 						= date("Y-m",strtotime("+1 month", strtotime($billing_month)))."-".$due_day_of_the_month;
+	$due_date_						= $due_date;
+
+	$due_month 						= date("Y-m",strtotime("+1 month", strtotime($billing_month)));
+	$month_limit 					= date("Y-m-t",strtotime($due_month));
+
+	return validateDate($due_date_)>0?$due_date_:$month_limit;
 }
 
 ?>

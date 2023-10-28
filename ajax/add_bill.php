@@ -13,8 +13,13 @@
 
     $status 			= "S";
     $encoded_by 		= $_SESSION['user_id'];
+    $get_billing_count_for_the_month = get_billing_count_for_the_month($user_id,$billing_date);
+    if($get_billing_count_for_the_month>0){
+        echo 2;
+    }else{
+        $mysqli->query("INSERT INTO tbl_bills SET `user_id` ='$user_id',`billing_date` ='$billing_date',`cubic_meter_rate` ='$cubic_meter_rate',`penalty_amount`='$penalty_amount',`previous_reading`='$previous_reading',`current_reading`='$current_reading',`due_date`='$due_date',`encoded_by`='$encoded_by',status='$status', maximum_cubic='$maximum_cubic',minimum_rate='$minimum_rate'");
 
-	$mysqli->query("INSERT INTO tbl_bills SET `user_id` ='$user_id',`billing_date` ='$billing_date',`cubic_meter_rate` ='$cubic_meter_rate',`penalty_amount`='$penalty_amount',`previous_reading`='$previous_reading',`current_reading`='$current_reading',`due_date`='$due_date',`encoded_by`='$encoded_by',status='$status', maximum_cubic='$maximum_cubic',minimum_rate='$minimum_rate'");
-
-    echo 1;
+        echo 1;
+    }
+	
 ?>

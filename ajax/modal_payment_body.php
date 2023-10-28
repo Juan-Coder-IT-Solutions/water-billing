@@ -9,7 +9,7 @@
       			<tr>
       			   	<th style="width: 5px;"></th>
                 	<th>Payment</th>
-                	<th>Date Added</th>
+                	<th>Payment Date</th>
       			</tr>
     		</thead>
     		<tbody>
@@ -19,8 +19,8 @@
 					while ($row = $fetch->fetch_array()) {
 						echo "<tr>
 			      			   	<td><center><button class='btn btn-outline-danger btn-sm' data-toggle='tooltip' title='Payment' onclick='delete_payment($row[payment_id])'><i class='mdi mdi-delete'></i></button></center></td>
-		                		<td>$row[payment_amount]</td>
-			                	<td>$row[date_added]</td>
+		                		<td>".number_format($row['payment_amount'],2)."</td>
+			                	<td>$row[payment_date]</td>
 			      			</tr>";
 
 			      			$total_amount += $row['payment_amount'];

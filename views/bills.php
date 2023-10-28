@@ -40,6 +40,7 @@
                     <th>Current <br> Reading</th>
                     <th>Payment</th>
                     <th>Balance</th>
+                    <th>Penalty Amount</th>
                     <th>Billing <br> Date</th>
                     <th>Due <br> Date</th>
                     <th>Status</th>
@@ -148,6 +149,12 @@ $("#form_submit_update_form").submit(function(e){
                   });
                   get_datatable();
                   $("#modalUpdate").modal("hide");
+                }else if(data==2){
+                  Swal.fire({
+                      icon: 'danger',
+                      title: 'Opps!',
+                      text: 'This chosen customer already has a billing statement for the chosen billing date.'
+                  });
                 }else{
                   Swal.fire({
                       icon: 'danger',
@@ -238,6 +245,12 @@ $("#form_submit_add_form").submit(function(e){
               document.getElementById("form_submit_add_form").reset();
               get_datatable();
               $("#modalAdd").modal("hide");
+            }else if(data==2){
+                Swal.fire({
+                    icon: 'danger',
+                    title: 'Opps!',
+                    text: 'This chosen customer already has a billing statement for the chosen billing date.'
+                });
             }else{
                 Swal.fire({
                     icon: 'danger',
@@ -285,6 +298,9 @@ function get_datatable(){
       },
       {
           "data":"balance"
+      },
+      {
+          "data":"penalty_amount"
       },
       {
           "data":"billing_date"

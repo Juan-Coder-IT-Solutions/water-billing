@@ -28,7 +28,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Billing Date:</label>
-                    <input type="date" class="form-control form-control-sm" name="billing_date" placeholder="Billing Date" autocomplete="off" required>
+                    <input type="date" class="form-control form-control-sm" id="billing_date" name="billing_date" placeholder="Billing Date" autocomplete="off" value="<?=date('Y-m-d')?>" onchange="get_customer_system_charges()" required>
                   </div>
                 </div>
                 
@@ -104,8 +104,10 @@
 <script type="text/javascript">
 function get_customer_system_charges(){
   var user_id = $("#user_id").val();
+  var billing_date = $("#billing_date").val();
   $.post("ajax/get_customer_system_charges.php",{
-    user_id:user_id
+    user_id:user_id,
+    billing_date:billing_date
   },function(data){
     var get_data = JSON.parse(data);
     $("#cubic_meter_rate").val(get_data[0].cubic_meter_rate);

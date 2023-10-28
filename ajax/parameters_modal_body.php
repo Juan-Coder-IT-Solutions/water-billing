@@ -36,7 +36,7 @@
 
             <div class="form-group">
                 <label>Due day of the month:</label>
-                <input type="number" class="form-control form-control-sm" name="c_due_day_of_the_month"  value="<?=$commercial_row['due_day_of_the_month']?>" placeholder="Due day of the month" autocomplete="off" autocomplete="off" min='1' max='30'>
+                <input type="number" class="form-control form-control-sm" name="c_due_day_of_the_month"  value="<?=$commercial_row['due_day_of_the_month']?>" placeholder="Due day of the month" autocomplete="off" autocomplete="off" min='1' max='31'>
             </div>
        </div>
     </div>
@@ -67,7 +67,7 @@
 
              <div class="form-group">
                 <label>Due day of the month:</label>
-                <input type="number" class="form-control form-control-sm" name="r_due_day_of_the_month"  value="<?=$residential_row['due_day_of_the_month']?>" placeholder="Due day of the month" autocomplete="off" min='1' max='30'>
+                <input type="number" class="form-control form-control-sm" name="r_due_day_of_the_month"  value="<?=$residential_row['due_day_of_the_month']?>" placeholder="Due day of the month" autocomplete="off" min='1' max='31'>
             </div>
        </div>
     </div>

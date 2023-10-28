@@ -10,17 +10,29 @@
       	
       	<div class="modal-body">
       		<div class="row">
-      			<div class="col-sm-12">
-                <div class="form-group">
-                    <label>Payment Amount:</label>
-                   <div class="input-group">
-                        <input type="number" class="form-control form-control-sm" placeholder="Payment Amount" id="payment_amount" aria-label="Payment Amount" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button" onclick="save_payment()"><i class="mdi mdi-check-circle"></i> Save Payment</button>
-                        </div>
-                      </div>
-                </div>
-              </div>
+      			<div class="col-sm-6">
+      				<div class="form-group">
+      					<label>Payment Date:</label>
+                   		<div class="input-group">
+                        <input type="date" class="form-control form-control-sm" placeholder="Payment Date" id="payment_date" aria-label="Payment Date" aria-describedby="basic-addon2" value="<?= date('Y-m-d')?>">
+                     </div>
+      				</div>
+      				
+      			</div>
+
+      			<div class="col-sm-6">
+                	<div class="form-group">
+                   <label>Payment Amount:</label>
+	                   <div class="input-group">
+	                        <input type="number" class="form-control form-control-sm" placeholder="Payment Amount" id="payment_amount" aria-label="Payment Amount" aria-describedby="basic-addon2">
+	                     </div>
+                	</div>
+              	</div>
+
+              	<div class="col-sm-12">
+              		<button class="btn btn-outline-primary" type="button" onclick="save_payment()" style="float: right;"><i class="mdi mdi-check-circle"></i> Save Payment</button>
+              		
+              	</div>
       		</div>
       		<input type="hidden" class="form-control form-control-sm" id="payment_bill_id">
 
@@ -75,9 +87,11 @@ function save_payment(){
         confirmButtonText: 'Proceed'
     }).then((result) => {
         if(result.isConfirmed){
+           	var payment_date = $("#payment_date").val();
            	var payment_amount = $("#payment_amount").val();
 			var payment_bill_id = $("#payment_bill_id").val();
 			$.post("ajax/save_payment.php",{
+				payment_date:payment_date,
 				payment_amount:payment_amount,
 				payment_bill_id:payment_bill_id
 			},function(data){
