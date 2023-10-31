@@ -14,7 +14,7 @@ if (isset($data->user_id) && !empty($data->user_id)) {
 
     $sql = $mysqli_connect->query("DELETE FROM `tbl_feedbacks` WHERE feedback_id='$feedback_id' AND user_id='$user_id'");
     if ($sql) {
-        echo 1;
+        echo $feedback_id;
     } else {
         echo "Error in executing query.";
     }
