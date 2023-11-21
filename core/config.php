@@ -8,7 +8,7 @@
 
 define("DB_SERVER", "localhost");
 define("DB_USER", "u814036432_wb_root");
-define("DB_PASSWORD", "oVpn[Z4Oi?");
+define("DB_PASSWORD", "[bZ3!=6>]XD");
 define("DB_DATABASE", "u814036432_water_billing");
 
 
