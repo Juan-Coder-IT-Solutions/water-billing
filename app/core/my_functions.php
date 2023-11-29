@@ -86,8 +86,8 @@ function monthlyBilling($user_id)
 }
 
 function get_billing_total_balance($bill_id){
-	global $mysqli;
-	$fetch = $mysqli->query("SELECT * FROM tbl_bills WHERE bill_id='$bill_id'") or die(mysqli_error());
+	global $mysqli_connect;
+	$fetch = $mysqli_connect->query("SELECT * FROM tbl_bills WHERE bill_id='$bill_id'") or die(mysqli_error());
 	$row = $fetch->fetch_array();
 	
 	//IF CURRENT DATE EXCEEDS THE DUE DATE ADD PENALTY AMOUNT
