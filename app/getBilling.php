@@ -34,8 +34,6 @@ if($fetch->num_rows > 0){
 	$row['current_reading'] = 0;
 }
 
-$fetchUnpaid = $mysqli_connect->query("SELECT CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN SUM(((current_reading - previous_reading) * cubic_meter_rate)+penalty_amount) ELSE sum(minimum_rate+penalty_amount) END AS bill_amount FROM tbl_bills where user_id='$user_id' and status='S'") or die(mysql_error());
-$Urow = $fetchUnpaid->fetch_array();
 
 $total_consume = $row['current_reading'] - $row['previous_reading'];
 $total_amount = $total_consume > $row['maximum_cubic'] ? $total_consume * $row['cubic_meter_rate'] : $row['minimum_rate'];
@@ -48,7 +46,6 @@ $row['maximum_cubic'] = $param['maximum_cubic'];
 $row['minimum_rate'] = $param['minimum_rate'];
 $row['penalty_amount'] = $param['late_penalty_amount'];
 $row['amount_due'] = $total_amount;//$param['minimum_rate']+$param['late_penalty_amount'];
-$row['unpaid_month'] = $Urow['bill_amount'];
 
 
 echo json_encode($row);

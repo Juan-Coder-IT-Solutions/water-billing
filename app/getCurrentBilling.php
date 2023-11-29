@@ -28,6 +28,10 @@ $row = array();
 $fetch = $mysqli_connect->query("SELECT * FROM tbl_bills where user_id='$user_id' AND MONTH(billing_date) = $dateMonth AND YEAR(billing_date) = $dateYear") or die(mysql_error());
 $row = $fetch->fetch_array();
 
+
+$fetchUnpaid = $mysqli_connect->query("SELECT CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN SUM(((current_reading - previous_reading) * cubic_meter_rate)+penalty_amount) ELSE sum(minimum_rate+penalty_amount) END AS bill_amount FROM tbl_bills where user_id='$user_id' and status='S' AND bill_id != '$row[bill_id]'") or die(mysql_error());
+$Urow = $fetchUnpaid->fetch_array();
+
 // $param = getParam(getCustomerType($user_id));
 // $row['cubic_meter_rate'] = $param['cubic_meter_rate'];
 // $row['maximum_cubic'] = $param['maximum_cubic'];
@@ -48,6 +52,7 @@ $row['total_consume'] = $total_consume;
 $row['total_amount'] = $total_amount;
 $row['due_total'] =  $total_due;
 $row['encoded'] =  getUser($row['encoded_by']);
+$row['unpaid_month'] = $Urow['bill_amount'];
 
 
 echo json_encode($row);
