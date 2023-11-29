@@ -13,6 +13,7 @@
 		$list['user'] 				= userFullName($row['user_id']);
 		$list['previous_reading'] 	= $row['previous_reading'];
 		$list['current_reading'] 	= $row['current_reading'];
+		$list['consume'] 			= $row['current_reading']-$row['previous_reading'];
 		$list['cubic_meter_rate'] 	= number_format($row['cubic_meter_rate'],2);
 		$list['payment'] 			= number_format(get_billing_total_payment($row['bill_id']),2);
 		$list['balance'] 			= number_format(get_billing_total_balance($row['bill_id']),2);

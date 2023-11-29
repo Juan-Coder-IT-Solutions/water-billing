@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Customer:</label>
-                    <select class="form-control form-control-sm" id="user_id" name="user_id" onchange="get_customer_system_charges()" required>
+                    <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" id="user_id" name="user_id" onchange="get_customer_system_charges()" required>
                       <?php 
                         echo "<option value=''>Please Choose:</option>";
                         $fetch_user_addmodal = $mysqli->query("SELECT * FROM tbl_users WHERE user_category='C'") or die(mysqli_error());
@@ -53,8 +53,8 @@
               <div class="row">
                 <div class="col-sm-6">
                    <div class="form-group">
-                      <label>Maximum Cubic:</label>
-                      <input type="number" class="form-control form-control-sm" id="maximum_cubic" name="maximum_cubic" placeholder="Maximum Cubic" autocomplete="off" required>
+                      <label>Flat Rate:</label>
+                      <input type="number" class="form-control form-control-sm" id="maximum_cubic" name="maximum_cubic" placeholder="Flat Rate" autocomplete="off" required>
                   </div>
                 </div>
 

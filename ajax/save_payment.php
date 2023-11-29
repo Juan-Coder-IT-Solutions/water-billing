@@ -1,6 +1,7 @@
 <?php 
 	include '../core/config.php';
 	$user_id 		= $_SESSION['user_id'];
+	$date_added    	= date("Y-m-d H:i:s",strtotime($system_date));
     $bill_id 		= $mysqli -> real_escape_string($_POST['payment_bill_id']);
     $payment_date 	= $mysqli -> real_escape_string($_POST['payment_date']);
     $payment_amount = $mysqli -> real_escape_string($_POST['payment_amount']);
@@ -21,7 +22,7 @@
 		if($total_payment>$final_total_balance){ //PAYMENT AMOUNT EXCEEDS THE REMAINING BALANCE
 			echo 2;
 		}else{
-			$query = $mysqli->query("INSERT INTO tbl_payments SET `bill_id` ='$bill_id', `payment_amount`='$payment_amount',`payment_date`='$payment_date', `encoded_by`='$user_id'");
+			$query = $mysqli->query("INSERT INTO tbl_payments SET `bill_id` ='$bill_id', `payment_amount`='$payment_amount',`payment_date`='$payment_date', `encoded_by`='$user_id',`date_added`='$date_added'");
 
 			//UPDATE BILL TO SAVED OR PAID
 			$update_bill_status = $final_total_balance==$total_payment?"P":"S";

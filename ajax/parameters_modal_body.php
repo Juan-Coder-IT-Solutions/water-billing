@@ -25,8 +25,8 @@
             </div>
 
             <div class="form-group">
-                <label>Maximum cubic:</label>
-                <input type="number" class="form-control form-control-sm" name="c_maximum_cubic"  value="<?=$commercial_row['maximum_cubic']?>" placeholder="Maximum cubic" autocomplete="off">
+                <label>Flat Rate:</label>
+                <input type="number" class="form-control form-control-sm" name="c_maximum_cubic"  value="<?=$commercial_row['maximum_cubic']?>" placeholder="Flat Rate" autocomplete="off">
             </div>
 
             <div class="form-group">
@@ -56,8 +56,8 @@
             </div>
 
             <div class="form-group">
-                <label>Maximum cubic:</label>
-                <input type="number" class="form-control form-control-sm" name="r_maximum_cubic"  value="<?=$residential_row['maximum_cubic']?>" placeholder="Maximum cubic" autocomplete="off">
+                <label>Flat Rate:</label>
+                <input type="number" class="form-control form-control-sm" name="r_maximum_cubic"  value="<?=$residential_row['maximum_cubic']?>" placeholder="Flat Rate" autocomplete="off">
             </div>
 
             <div class="form-group">

@@ -20,6 +20,9 @@
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="assets/vendors/jquery-bar-rating/css-stars.css" />
     <link rel="stylesheet" href="assets/vendors/font-awesome/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="assets/vendors/select2/select2.min.css" />
+    <link rel="stylesheet" href="assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css" />
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
@@ -65,8 +68,9 @@
     <script src="assets/vendors/flot/jquery.flot.categories.js"></script>
     <script src="assets/vendors/flot/jquery.flot.fillbetween.js"></script>
     <script src="assets/vendors/flot/jquery.flot.stack.js"></script>
-          <script src="assets/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/vendors/sweet-alert/sweetalert2.all.min.js"></script>
+    <script src="assets/vendors/select2/select2.min.js"></script>
     
     <!-- End plugin js for this page -->
     <!-- inject:js -->
@@ -77,7 +81,9 @@
     <script src="assets/js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page -->
-<!--     <script src="assets/js/dashboard.js"></script> -->
+    <script src="assets/js/select2.js"></script>
+<!--     <script src="assets/js/dashboard.js"></s
+  cript> -->
     <!-- End custom js for this page -->
   </body>
 

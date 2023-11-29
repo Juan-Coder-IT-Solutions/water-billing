@@ -12,7 +12,12 @@
 	      		<!--HIDDEN PRIMARY ID -->
 	      		<input type="hidden" class="form-control form-control-sm" id="update_announcement_id" name="update_announcement_id">
 
-	      		<div class="form-group">
+            <div class="form-group">
+                  <label>Date:</label>
+                  <input type="date" class="form-control form-control-sm" id="update_announcement_date" name="update_announcement_date" placeholder="Announcement Date" autocomplete="off" required>
+              </div>
+
+	      		 <div class="form-group">
 	                <label>Title:</label>
 	                <input type="text" class="form-control form-control-sm" id="update_announcement_title" name="update_announcement_title" placeholder="Announcement Title" autocomplete="off" required>
 	            </div>

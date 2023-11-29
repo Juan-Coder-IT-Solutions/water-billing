@@ -73,7 +73,7 @@ $count_feedbacks = $mysqli->query("SELECT * FROM tbl_feedbacks") or die(mysqli_e
             <div class="card mb-1" style="max-width: 18rem;">
               <div class="card-header" style="background:antiquewhite;"><i class="mdi mdi-account-circle icon-sm text-warning"></i> <?= userFullName($announcement_row['user_id']) ?>
               <br>
-              <span style="font-size: 11px;color: #656565;"><?= date("Y-m-d (h:i A)",strtotime($announcement_row['date_added']))?></span>
+              <span style="font-size: 11px;color: #656565;"><?= date("Y-m-d",strtotime($announcement_row['announcement_date']))?></span>
               </div>
               <div class="card-body" style="background: #fff7ed;">
                 <h5 class="card-title"><i class="mdi mdi-pin icon-sm text-warning"></i> <?= $announcement_row['announcement_title'] ?></h5>

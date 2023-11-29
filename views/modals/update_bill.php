@@ -17,7 +17,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label>Customer:</label>
-                    <select class="form-control form-control-sm" id="update_user_id" name="update_user_id" required>
+                    <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" tabindex="-1" id="update_user_id" name="update_user_id" required>
                       <?php 
                         echo "<option value=''>Please Choose:</option>";
                         $fetch_user_addmodal = $mysqli->query("SELECT * FROM tbl_users WHERE user_category='C'") or die(mysqli_error());
@@ -57,8 +57,8 @@
               <div class="row">
                 <div class="col-sm-6">
                    <div class="form-group">
-                      <label>Maximum Cubic:</label>
-                      <input type="number" class="form-control form-control-sm" id="update_maximum_cubic" name="update_maximum_cubic" placeholder="Maximum Cubic" autocomplete="off" required>
+                      <label>Flat Rate:</label>
+                      <input type="number" class="form-control form-control-sm" id="update_maximum_cubic" name="update_maximum_cubic" placeholder="Flat Rate" autocomplete="off" required>
                   </div>
                 </div>
 
@@ -104,7 +104,6 @@
     </div>
   </div>
 </div>
-
 <!-- <script type="text/javascript">
   function get_update_customer_system_charges(){
     var user_id = $("#update_user_id").val();
