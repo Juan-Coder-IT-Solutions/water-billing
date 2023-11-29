@@ -30,7 +30,7 @@ if (isset($data->account_id) && !empty($data->account_id)) {
     if ($count_rows[0] > 0) {
         echo -1;
     } else {
-        $sql = $mysqli_connect->query("INSERT INTO `tbl_bills`(`user_id`, `previous_reading`, `current_reading`, `cubic_meter_rate`, `maximum_cubic`, `minimum_rate`, `penalty_amount`, `billing_date`, `due_date`, `status`, `encoded_by`) VALUES ('$user_id','$previous_reading','$current_reading','$cubic_meter_rate','$maximum_cubic','$minimum_rate','$penalty_amount','$date','$due_date', 'S', '$encoded_by')");
+        $sql = $mysqli_connect->query("INSERT INTO `tbl_bills`(`user_id`, `previous_reading`, `current_reading`, `cubic_meter_rate`, `maximum_cubic`, `minimum_rate`, `penalty_amount`, `billing_date`, `due_date`, `status`, `encoded_by`, date_added) VALUES ('$user_id','$previous_reading','$current_reading','$cubic_meter_rate','$maximum_cubic','$minimum_rate','$penalty_amount','$date','$due_date', 'S', '$encoded_by','$date')");
         if ($sql) {
             echo 1;
         } else {

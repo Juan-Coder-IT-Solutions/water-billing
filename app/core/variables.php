@@ -7,7 +7,7 @@
 
 define("host","localhost");
 define("username","u814036432_wb_root");
-define("password","oVpn[Z4Oi?");
+define("password","[bZ3!=6>]XD");
 define("database","u814036432_water_billing");
 
 //inside dir

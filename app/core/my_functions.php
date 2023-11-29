@@ -84,3 +84,22 @@ function monthlyBilling($user_id)
 		return 0;
 	}
 }
+
+function get_billing_total_balance($bill_id){
+	global $mysqli;
+	$fetch = $mysqli->query("SELECT * FROM tbl_bills WHERE bill_id='$bill_id'") or die(mysqli_error());
+	$row = $fetch->fetch_array();
+	
+	//IF CURRENT DATE EXCEEDS THE DUE DATE ADD PENALTY AMOUNT
+	//$penalty = $row['due_date']<date('Y-m-d')?$row['penalty_amount']:0;
+
+	$consumption = ($row['current_reading']-$row['previous_reading']);
+
+	//IF CONSUMPTION EXCEEDS THE MAXIMUM CUBIC RATE USE CUBIC METER RATE ELSE USE MINIMUM RATE
+	$cubic_rate = $consumption > $row['maximum_cubic'] ? $row['cubic_meter_rate']*$consumption : $row['minimum_rate'];
+
+	//BALANCE FORMULA
+	$balance = $cubic_rate;
+
+	return $balance;
+}

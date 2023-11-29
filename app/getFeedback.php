@@ -18,7 +18,7 @@ while ($row = $fetch->fetch_array()) {
     $list = array();
     $list['id'] = $row['feedback_id'];
     $list['feedback_content'] = $row['feedback_content'];
-    $list['date_added'] = date("F Y",strtotime($row['date_added']));
+    $list['date_added'] = date("F j, Y h:i a",strtotime($row['date_added']));
     array_push($response, $list);
 }
 

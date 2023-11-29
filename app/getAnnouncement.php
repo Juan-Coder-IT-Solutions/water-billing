@@ -16,7 +16,7 @@ while ($row = $fetch->fetch_array()) {
     $list['id'] = $row['announcement_id'];
     $list['title'] = $row['announcement_title'];
     $list['content'] = $row['announcement_content'];
-    $list['date_added'] = $row['date_added'];
+    $list['date_added'] =  date("F j, Y h:i a",strtotime($row['date_added']));
     array_push($response, $list);
 }
 
