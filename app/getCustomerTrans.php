@@ -25,6 +25,7 @@ while ($row = $fetch->fetch_array()) {
     $lastMonthYear = date('Y', strtotime($lastMonth));
     $lastMonthMonth = date('m', strtotime($lastMonth));
     $amount = $get_billing_total_balance($row['bill_id']);
+    $amount_due = $amount+$row['penalty_amount'];
 
     $total = ($row['current_reading'] - $row['previous_reading']) * $row['cubic_meter_rate'];
     $list = array();
@@ -36,7 +37,7 @@ while ($row = $fetch->fetch_array()) {
     $list['penalty_amount'] = $row['penalty_amount'];
     $list['total'] = $total;
     $list['amount'] = number_format($amount, 2); //$row['penalty_amount'];
-    $list['amount_due'] = 9;//number_format($amount+$row['penalty_amount'], 2); //$row['penalty_amount'];
+    $list['amount_due'] = number_format($amount_due, 2); //$row['penalty_amount'];
     $list['billing_date'] = $row['billing_date'];
     $list['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1)) . " " . $lastMonthYear . " to " . date('M', mktime(0, 0, 0, $dateMonth, 1)) . " " . $dateYear;
     $list['due_date'] = date("F j, Y h:i A",strtotime($row['due_date']));
