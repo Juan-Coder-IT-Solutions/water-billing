@@ -16,6 +16,17 @@
     	</div>
   	</div>
 
+    <div class="form-group col-sm-4">
+      <label>User Category Filter:</label>
+      <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" id="user_category_filter" onchange="get_datatable()">
+        <option value='AA'>All</option>
+        <option value='A'>Admin</option>
+        <option value='M'>Meter Reader</option>
+        <option value='C'>Customer: Commercial</option>
+        <option value='R'>Customer: Residential</option>
+      </select>
+    </div>
+
   	<div class="row mb-2">
     	<div class="col-sm-6">
       		<button type="button" class="btn btn-outline-primary btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
@@ -203,6 +214,8 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
+  var user_category_filter = $("#user_category_filter").val();
+
  	$("#datatable").DataTable().destroy();
 	$("#datatable").DataTable({
 	    "responsive": true,
@@ -211,6 +224,9 @@ function get_datatable(){
 	        "type":"POST",
 	        "url":"ajax/datatables/users.php",
 	        "dataSrc":"data", 
+          'data': {
+           user_category_filter: user_category_filter
+        },
 	    },
 	    "columns":[
 	    {

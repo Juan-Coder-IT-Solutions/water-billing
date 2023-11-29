@@ -9,6 +9,7 @@
 		$list = array();
 		$list['user_id'] 				= $row['user_id'];
 		$list['session_user_id'] 		= $session_user_id;
+		$list['announcement_date'] 		= date("F j, Y",strtotime($row['announcement_date']));
 		$list['announcement_id'] 		= $row['announcement_id'];
 		$list['announcement_title'] 	= $row['announcement_title'];
 		$list['announcement_content'] 	= $row['announcement_content'];

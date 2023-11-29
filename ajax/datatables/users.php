@@ -1,7 +1,11 @@
 <?php
 	include '../../core/config.php';
+	$user_category_filter = $_POST['user_category_filter'];
 
-	$fetch_user = $mysqli->query("SELECT * FROM tbl_users ORDER BY user_fname ASC") or die(mysqli_error());
+	$user_category_filter_ = $user_category_filter=="AA"?"":(($user_category_filter=="A" OR $user_category_filter=="M")?"WHERE user_category='$user_category_filter'":(($user_category_filter=="C" OR $user_category_filter=="R")?"WHERE user_category='C' AND customer_type='$user_category_filter'":""));
+
+
+	$fetch_user = $mysqli->query("SELECT * FROM tbl_users $user_category_filter_ ORDER BY user_fname ASC") or die(mysqli_error());
 
 	$response['data'] = array();
 	$count = 1;

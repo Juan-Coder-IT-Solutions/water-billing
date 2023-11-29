@@ -9,6 +9,11 @@
       </div>
       	<form role="form" method="POST" id="form_submit_add_form">
 	      	<div class="modal-body">
+            <div class="form-group">
+                <label>Date:</label>
+                <input type="date" class="form-control form-control-sm" name="announcement_date" value="<?=date('Y-m-d')?>" autocomplete="off" required>
+            </div>
+
 	      		<div class="form-group">
                 <label>Title:</label>
                 <input type="text" class="form-control form-control-sm" name="announcement_title" placeholder="Announcement Title" autocomplete="off" required>

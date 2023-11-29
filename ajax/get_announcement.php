@@ -8,9 +8,10 @@
 	while ($row = $fetch->fetch_array()) {
 		$list = array();
 		$list['announcement_id'] 		= $row['announcement_id'];
+		$list['announcement_date'] 		= $row['announcement_date'];
 		$list['announcement_title'] 	= $row['announcement_title'];
 		$list['announcement_content'] 	= $row['announcement_content'];
-		$list['date_added'] 	= $row['date_added'];
+		$list['date_added'] 			= $row['date_added'];
 
 
 		array_push($response, $list);

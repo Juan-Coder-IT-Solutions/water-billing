@@ -1,5 +1,6 @@
 <?php 
 	include '../core/config.php';
+	$date_added     = date("Y-m-d H:i:s",strtotime($system_date));
 	$user_category 	= $mysqli -> real_escape_string($_POST['user_category']);
     $user_fname 	= $mysqli -> real_escape_string($_POST['user_fname']);
     $user_mname 	= $mysqli -> real_escape_string($_POST['user_mname']);
@@ -16,7 +17,7 @@
 		echo 2;
 	}else{
 		
-		$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$user_fname', `user_mname`='$user_mname', `user_lname`='$user_lname', `username`='$username', password='$password', `user_category`='$user_category',`contact_number`='$contact_number',address='$address', customer_type='$customer_type',meter_number='$meter_number'");
+		$query = $mysqli->query("INSERT INTO tbl_users SET `user_fname` ='$user_fname', `user_mname`='$user_mname', `user_lname`='$user_lname', `username`='$username', password='$password', `user_category`='$user_category',`contact_number`='$contact_number',address='$address', customer_type='$customer_type',meter_number='$meter_number',`date_added`='$date_added'");
 		$last_id = $mysqli -> insert_id;
 
 		$account_number = sprintf('%06d', $last_id);

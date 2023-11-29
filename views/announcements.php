@@ -32,10 +32,11 @@
           			<tr>
           				  <th style="width: 5px;"></th>
                     <th style="width: 5px;"></th>
+                    <th>Date</th>
                     <th>Title</th>
                     <th>Content</th>
                     <th>Encoded By</th>
-                    <th>Date Added</th>
+                    <!-- <th>Date Added</th> -->
           			</tr>
         		</thead>
         		<tbody>
@@ -100,6 +101,7 @@ function get_data(primary_id){
     },function(data){
         var get_data = JSON.parse(data);
         $("#update_announcement_id").val(get_data[0].announcement_id);
+        $("#update_announcement_date").val(get_data[0].announcement_date);
         $("#update_announcement_title").val(get_data[0].announcement_title);
         $("#update_announcement_content").val(get_data[0].announcement_content);
   });
@@ -192,6 +194,9 @@ function get_datatable(){
 	            return row.user_id==row.session_user_id?"<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.announcement_id+")'><i class='mdi mdi-lead-pencil'></i></button>":"";
 	        }
 	    },
+      {
+          "data":"announcement_date"
+      },
 	    {
 	       	"data":"announcement_title"
 	    },
@@ -200,10 +205,10 @@ function get_datatable(){
 	    },
       {
           "data":"user"
-      },
-      {
-          "data":"date_added"
       }
+      // {
+      //     "data":"date_added"
+      // }
 	    ]
 	});
 }

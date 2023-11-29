@@ -35,16 +35,17 @@
           			<tr>
           			   <th style="width: 5px;"></th>
                     <th style="width: 5px;"></th>
-                    <th>Full <br> Name</th>
-                    <th>Previous <br> Reading</th>
-                    <th>Current <br> Reading</th>
+                    <th style="font-size: 11px;">Full Name</th>
+                    <th style="font-size: 11px;">Previous <br> Reading</th>
+                    <th style="font-size: 11px;">Current <br> Reading</th>
+                    <th>Consume</th>
                     <th>Payment</th>
                     <th>Balance</th>
-                    <th>Penalty Amount</th>
-                    <th>Billing <br> Date</th>
-                    <th>Due <br> Date</th>
-                    <th>Status</th>
-                    <th>Encoded By</th>
+                    <th style="font-size: 11px;">Penalty <br> Amount</th>
+                    <th style="font-size: 11px;">Billing <br> Date</th>
+                    <th style="font-size: 11px;">Due <br> Date</th>
+                    <th style="font-size: 11px;">Payment <br> Status</th>
+                    <th style="font-size: 11px;">Encoded By</th>
           			</tr>
         		</thead>
         		<tbody>
@@ -52,6 +53,10 @@
       		</table>
     	</div>
   	</div>
+</div>
+
+<div id="DivIdToPrint" style="display: none;">
+  qweqweqwe
 </div>
 
 <?php require_once 'views/modals/add_bill.php'; ?>
@@ -63,6 +68,32 @@
 $(document).ready(function() { 
 	get_datatable();
 });
+
+function print_data(bill_id){
+  $.post("ajax/print_bill.php",{
+    bill_id:bill_id
+  },function(data){
+    $("#DivIdToPrint").html(data);
+    printDiv();
+  });
+}
+
+function  printDiv() 
+{
+
+  var divToPrint=document.getElementById('DivIdToPrint');
+
+  var newWin=window.open('','Print-Window');
+
+  newWin.document.open();
+
+  newWin.document.write('<html><body onload="window.print()">'+divToPrint.innerHTML+'</body></html>');
+
+  newWin.document.close();
+
+  setTimeout(function(){newWin.close();},10);
+
+}
 
 function payment(bill_id){
   $("#modalPayments").modal("show");
@@ -178,7 +209,7 @@ function get_data(primary_id){
     },function(data){
         var get_data = JSON.parse(data);
         $("#update_bill_id").val(get_data[0].bill_id);
-        $("#update_user_id").val(get_data[0].user_id);
+        $("#update_user_id").val(get_data[0].user_id).trigger('change');
         $("#update_previous_reading").val(get_data[0].previous_reading);
         $("#update_current_reading").val(get_data[0].current_reading);
         $("#update_cubic_meter_rate").val(get_data[0].cubic_meter_rate);
@@ -281,7 +312,7 @@ function get_datatable(){
 	    },
 	    {
 	        "mRender":function(data, type, row){
-	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.bill_id+")'><i class='mdi mdi-lead-pencil'></i></button> <button class='btn btn-outline-primary btn-sm' data-toggle='tooltip' title='Payment' onclick='payment("+row.bill_id+")'><i class='mdi mdi-cash-usd'></i></button>";
+	            return "<button class='btn btn-outline-dark btn-sm' data-toggle='tooltip' title='Update Record' onclick='get_data("+row.bill_id+")'><i class='mdi mdi-lead-pencil'></i></button> <button class='btn btn-outline-primary btn-sm' data-toggle='tooltip' title='Payment' onclick='payment("+row.bill_id+")'><i class='mdi mdi-cash-usd'></i></button> <button class='btn btn-outline-success btn-sm' data-toggle='tooltip' title='Print' onclick='print_data("+row.bill_id+")'><i class='mdi mdi-printer'></i></button>";
 	        }
 	    },
 	    {
@@ -293,6 +324,9 @@ function get_datatable(){
 	   	{
 	        "data":"current_reading"
 	    },
+      {
+          "data":"consume"
+      },
       {
           "data":"payment"
       },
@@ -310,7 +344,7 @@ function get_datatable(){
       },
 	    {
 	        "mRender":function(data, type, row){
-	            return row.status=="S"?"<label class='badge badge-warning'>Saved</label>":"<label class='badge badge-success'>Paid</label>";
+	            return row.status=="S"?"<label class='badge badge-warning'>Unpaid</label>":"<label class='badge badge-success'>Paid</label>";
 	        }
 	    },
       {
