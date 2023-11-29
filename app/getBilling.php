@@ -34,13 +34,21 @@ if($fetch->num_rows > 0){
 	$row['current_reading'] = 0;
 }
 
+$fetchUnpaid = $mysqli_connect->query("SELECT * FROM tbl_bills where user_id='$user_id' and status='S' AND bill_id!='$row[bill_id]'") or die(mysql_error());
+$Urow = $fetchUnpaid->fetch_array();
+
+$total_consume = $row['current_reading'] - $row['previous_reading'];
+$total_amount = $total_consume > $row['maximum_cubic'] ? $total_consume * $row['cubic_meter_rate'] : $row['minimum_rate'];
+$total_due = $total_amount + $row['penalty_amount'];
+
 $param = getParam(getCustomerType($user_id));
 $row['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1)) . " " . $lastMonthYear . " to " . date('M', mktime(0, 0, 0, $dateMonth, 1)) . " " . $dateYear;
 $row['cubic_meter_rate'] = $param['cubic_meter_rate'];
 $row['maximum_cubic'] = $param['maximum_cubic'];
 $row['minimum_rate'] = $param['minimum_rate'];
 $row['penalty_amount'] = $param['late_penalty_amount'];
-$row['amount_due'] = $param['minimum_rate']+$param['late_penalty_amount'];
+$row['amount_due'] = $total_amount;//$param['minimum_rate']+$param['late_penalty_amount'];
+$row['unpaid_month'] = $param['minimum_rate']+$param['late_penalty_amount'];
 
 
 echo json_encode($row);
