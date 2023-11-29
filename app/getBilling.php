@@ -34,7 +34,7 @@ if($fetch->num_rows > 0){
 	$row['current_reading'] = 0;
 }
 
-$fetchUnpaid = $mysqli_connect->query("SELECT CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN SUM(((current_reading - previous_reading) * cubic_meter_rate)+penalty_amount) ELSE sum(minimum_rate+penalty_amount) END AS bill_amount FROM tbl_bills where user_id='$user_id' and status='S'; AND bill_id!='$row[bill_id]'") or die(mysql_error());
+$fetchUnpaid = $mysqli_connect->query("SELECT CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN SUM(((current_reading - previous_reading) * cubic_meter_rate)+penalty_amount) ELSE sum(minimum_rate+penalty_amount) END AS bill_amount FROM tbl_bills where user_id='$user_id' and status='S' AND bill_id!='$row[bill_id]'") or die(mysql_error());
 $Urow = $fetchUnpaid->fetch_array();
 
 $total_consume = $row['current_reading'] - $row['previous_reading'];
