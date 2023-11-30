@@ -16,16 +16,32 @@
     	</div>
   	</div>
 
-    <div class="form-group col-sm-4">
-      <label>User Category Filter:</label>
-      <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" id="user_category_filter" onchange="get_datatable()">
-        <option value='AA'>All</option>
-        <option value='A'>Admin</option>
-        <option value='M'>Meter Reader</option>
-        <option value='C'>Customer: Commercial</option>
-        <option value='R'>Customer: Residential</option>
-      </select>
-    </div>
+	<label>Table Filter:</label>
+	<div class="row mb-2">
+
+		<div class="col-sm-4">
+			<div class="form-group">
+		      <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" data-select2-id="user_category_filter" tabindex="-1" aria-hidden="true" id="user_category_filter">
+		      	<option value='AA'>Please Choose User Category Filter:</option>
+		        <option value='AA'>All</option>
+		        <option value='A'>Admin</option>
+		        <option value='M'>Meter Reader</option>
+		        <option value='C'>Customer: Commercial</option>
+		        <option value='R'>Customer: Residential</option>
+		      </select>
+		    </div>
+		</div>
+
+		<div class="col-sm-4">
+		    <button type="button" class="btn btn-outline-primary btn-fw" onclick="get_datatable()"><i class="mdi mdi-refresh"></i> Generate </button>
+		</div>
+	</div>
+
+
+
+    	
+
+    
 
   	<div class="row mb-2">
     	<div class="col-sm-6">

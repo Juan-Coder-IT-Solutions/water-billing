@@ -16,6 +16,31 @@
     	</div>
   	</div>
 
+   <label>Table Filter:</label>
+  <div class="row mb-2">
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <input type="month" class="form-control" id="bills_month_filter" value="<?= date('Y-m')?>">
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="form-group">
+          <select class="js-example-basic-single select2-hidden-accessible form-control form-control-sm" style="width: 100%;" data-select2-id="bills_payment_status" tabindex="-1" aria-hidden="true" id="bills_payment_status">
+            <option value='AA'>Please Choose Payment Status Filter:</option>
+            <option value='AA'>All</option>
+            <option value='P'>Paid</option>
+            <option value='S'>Unpaid</option>
+          </select>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-outline-primary btn-fw" onclick="get_datatable()"><i class="mdi mdi-refresh"></i> Generate </button>
+    </div>
+  </div>
+
   	<div class="row mb-2">
     	<div class="col-sm-6">
       		<button type="button" class="btn btn-outline-primary btn-fw btn-sm mr-1" data-toggle='modal' data-target='#modalAdd'><i class="mdi mdi-plus-circle"></i> Add </button>
@@ -295,6 +320,9 @@ $("#form_submit_add_form").submit(function(e){
 });
 
 function get_datatable(){
+  var bills_month_filter = $("#bills_month_filter").val();
+  var bills_payment_status = $("#bills_payment_status").val();
+
  	$("#datatable").DataTable().destroy();
 	$("#datatable").DataTable({
 	    "responsive": true,
@@ -303,6 +331,10 @@ function get_datatable(){
 	        "type":"POST",
 	        "url":"ajax/datatables/bills.php",
 	        "dataSrc":"data", 
+          'data': {
+           bills_month_filter: bills_month_filter,
+           bills_payment_status:bills_payment_status
+        },
 	    },
 	    "columns":[
 	    {

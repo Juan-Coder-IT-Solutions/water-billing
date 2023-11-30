@@ -1,8 +1,15 @@
 <?php
 	include '../../core/config.php';
 
-	$fetch = $mysqli->query("SELECT * FROM tbl_bills") or die(mysqli_error());
+	$bills_month_filter = $_POST['bills_month_filter'];
+	$bills_payment_status = $_POST['bills_payment_status'];
 
+
+	$bills_payment_status_ = $bills_payment_status=="AA"?"":"AND status='$bills_payment_status'";
+
+	$filter = "WHERE date_format(billing_date, '%Y-%m')='$bills_month_filter' $bills_payment_status_";
+
+	$fetch = $mysqli->query("SELECT * FROM tbl_bills $filter") or die(mysqli_error());
 	$response['data'] = array();
 	$count = 1;
 	while ($row = $fetch->fetch_array()) {
