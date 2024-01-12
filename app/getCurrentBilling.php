@@ -43,6 +43,18 @@ $Urow = $fetchUnpaid->fetch_array();
 //     setTotalConsume(data["total_consume"]);
 //     setTotalAmount(data["total_amount"]);
 //     setTotalDueAmount(data["due_total"]);
+
+// Fetch unpaid bills
+$result_ = $mysqli_connect->query("SELECT MONTH(billing_date) AS unpaid_month,
+bill_id, CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN ((current_reading - previous_reading) * cubic_meter_rate) + penalty_amount ELSE minimum_rate + penalty_amount END AS bill_amount FROM tbl_bills WHERE user_id = '$user_id' AND status = 'S' AND bill_id != '$row[bill_id]' ORDER BY unpaid_month, bill_id");
+$unpaidDetails = array();
+while ($row_ = $result_->fetch_assoc()) {
+    $unpaidDetails[] = array(
+        'unpaid_month' => date("F j, Y",strtotime($row['announcement_date'])),//$row_['unpaid_month'],
+        'amount' => $row_['bill_amount']
+    );
+}
+
 $total_consume = $row['current_reading'] - $row['previous_reading'];
 $total_amount = $total_consume > $row['maximum_cubic'] ? $total_consume * $row['cubic_meter_rate'] : $row['minimum_rate'];
 $total_due = $total_amount + $row['penalty_amount'];
@@ -51,9 +63,9 @@ $row['billing_period'] = date('M', mktime(0, 0, 0, $lastMonthMonth, 1))." ".$las
 $row['total_consume'] = $total_consume;
 $row['total_amount'] = $total_amount;
 $row['due_total'] =  $total_due;
+$row['list_unpaid'] = $unpaidDetails;
 $row['encoded'] =  getUser($row['encoded_by']);
 $row['unpaid_month'] = $Urow['bill_amount'];
-
 
 echo json_encode($row);
 
