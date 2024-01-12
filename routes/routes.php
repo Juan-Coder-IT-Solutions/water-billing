@@ -9,6 +9,8 @@
 		require $view.'announcements.php';
 	}else if($page == 'bills'){
 		require $view.'bills.php';
+	}else if($page == 'collected_revenue'){
+		require $view.'collected_revenue.php';
 	}else if($page == 'feedbacks'){
 		require $view.'feedbacks.php';
 	}else if($page == 'profile'){

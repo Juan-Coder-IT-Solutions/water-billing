@@ -80,9 +80,7 @@
   	</div>
 </div>
 
-<div id="DivIdToPrint" style="display: none;">
-  qweqweqwe
-</div>
+<div id="DivIdToPrint" style="display: none;"></div>
 
 <?php require_once 'views/modals/add_bill.php'; ?>
 <?php require_once 'views/modals/update_bill.php'; ?> 

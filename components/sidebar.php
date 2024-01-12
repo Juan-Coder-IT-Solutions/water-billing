@@ -67,6 +67,19 @@
     </li>
     <?php } ?>
 
+
+    <?php if($session_user_category=="A"){ ?>
+    <li class="pt-2 pb-1">
+      <span class="nav-item-head">Reports</span>
+    </li>
+
+    <li class="nav-item <?= $page=="collected_revenue"?'active':''; ?>">
+      <a class="nav-link" href="?page=collected_revenue">
+        <i class="mdi mdi-format-list-checkbox menu-icon"></i>
+        <span class="menu-title">Collected Revenue</span>
+      </a>
+    </li>
+    <?php } ?>
     
     <li class="pt-2 pb-1">
       <span class="nav-item-head">Security</span>
