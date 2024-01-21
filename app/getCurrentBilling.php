@@ -45,12 +45,12 @@ $Urow = $fetchUnpaid->fetch_array();
 //     setTotalDueAmount(data["due_total"]);
 
 // Fetch unpaid bills
-$result_ = $mysqli_connect->query("SELECT billing_date,
+$result_ = $mysqli_connect->query("SELECT MONTH(billing_date) AS unpaid_month,
 bill_id, CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN ((current_reading - previous_reading) * cubic_meter_rate) + penalty_amount ELSE minimum_rate + penalty_amount END AS bill_amount FROM tbl_bills WHERE user_id = '$user_id' AND status = 'S' AND bill_id != '$row[bill_id]' ORDER BY unpaid_month, bill_id");
 $unpaidDetails = array();
 while ($row_ = $result_->fetch_assoc()) {
     $unpaidDetails[] = array(
-        'unpaid_month' => date("F",strtotime($row_['billing_date'])),
+        'unpaid_month' => date("F", mktime(0, 0, 0, $row_['unpaid_month'], 1)),
         'amount' => $row_['bill_amount']
     );
 }
