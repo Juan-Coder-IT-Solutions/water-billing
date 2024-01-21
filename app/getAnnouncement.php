@@ -9,7 +9,7 @@ require_once 'core/config.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
-$fetch = $mysqli_connect->query("SELECT * FROM tbl_announcements ORDER date_added DESC") or die(mysql_error());
+$fetch = $mysqli_connect->query("SELECT * FROM tbl_announcements ORDER BY date_added DESC") or die(mysql_error());
 $response = array();
 while ($row = $fetch->fetch_array()) {
     $list = array();
