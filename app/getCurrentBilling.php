@@ -50,7 +50,7 @@ bill_id, CASE WHEN maximum_cubic < (current_reading - previous_reading) THEN ((c
 $unpaidDetails = array();
 while ($row_ = $result_->fetch_assoc()) {
     $unpaidDetails[] = array(
-        'unpaid_month' => date("F j, Y",strtotime($row['billing_date'])),
+        'unpaid_month' => date("F",strtotime($row['due_date'])),
         'amount' => $row_['bill_amount']
     );
 }
